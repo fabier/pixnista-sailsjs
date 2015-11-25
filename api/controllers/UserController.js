@@ -47,7 +47,6 @@ module.exports = {
         }
       });
     });
-
   },
 
   /**
@@ -137,7 +136,6 @@ module.exports = {
 
       // Either send a 200 OK or redirect to the home page
       return res.backToHomePage();
-
     });
   }
 };
