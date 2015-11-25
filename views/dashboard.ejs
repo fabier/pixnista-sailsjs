@@ -59,25 +59,37 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="media" ng-repeat="singleTodo in todos">
+                        <h1>Ils ont besoin de votre aide</h1>
+                        <div class="col-md-1 no-padding" ng-repeat="image in needHelp">
+                            <div class="media">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img class="media-object" src="http://lorempixel.com/128/128/people" alt="...">
+                                        <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value}}" alt="...">
                                     </a>
-                                </div>
-                                <div class="media-body">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4"></div>
                     </div>
-                    <div class="row"></div>
-                    <div class="row"></div>
-                </div>
-            </div>
 
+
+                    <div class="row">
+                        <h1>Ils ont recu votre aide, merci à vous !</h1>
+                        <div class="col-md-1 no-padding" ng-repeat="image in hasFoundMatchingClothes">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value % 8}}" alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer text-center">
+                    <p>An app made with love in Toulouse for Fashion lovers !</p>
+                </footer>
+            </div>
         </div>
         <!--SCRIPTS-->
         <script src="/js/dependencies/sails.io.js"></script>
