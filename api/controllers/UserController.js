@@ -9,7 +9,7 @@ module.exports = {
 
   /**
    * Check the provided email address and password, and if they
-   * match a real user in the database, sign in to Activity Overlord.
+   * match a real user in the database, sign in.
    */
   login: function (req, res) {
 
@@ -116,7 +116,7 @@ module.exports = {
   },
 
   /**
-   * Log out of Activity Overlord.
+   * Log out.
    * (wipes `me` from the sesion)
    */
   logout: function (req, res) {
