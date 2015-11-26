@@ -39,12 +39,12 @@
                     <form ng-submit="submitLoginForm()" class="navbar-form navbar-right">
 
                         <div class="form-group">
-                            <input ng-model="loginForm.email" 
+                            <input ng-model="loginForm.email"
                                    ng-show="!loginForm.loading"
                                    type="text" placeholder="Email" name="email" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input ng-model="loginForm.password" 
+                            <input ng-model="loginForm.password"
                                    ng-show="!loginForm.loading"
                                    type="password" placeholder="Password" name="password" class="form-control">
                         </div>
@@ -68,8 +68,32 @@
                 </div>
             </div>
 
+            <div class="row">
+                <h1>Ils ont besoin de votre aide
+                    <a class="btn btn-success pull-right">Poster une photo</a>
+                </h1>
+                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in needHelp">
+                    <a href="#">
+                        <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value}}" alt="...">
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <h1>Ils ont recu votre aide, merci à vous !</h1>
+                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in hasFoundMatchingClothes">
+                    <div class="image-thumb-wrapper">
+                        <a href="#">
+                            <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value % 8}}" alt="...">
+                            <i class="glyphicon glyphicon-ok-sign {{image.ok ? 'ok' : 'ko'}}"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <footer class="footer text-center">
-                    <p>An app made with love in Toulouse for Fashion lovers !</p>
+                <p>An app made with love in Toulouse for Fashion lovers !</p>
             </footer>
         </div>
 

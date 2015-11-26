@@ -57,31 +57,26 @@
                     <h2>C'est ici qu'on pourra retrouver les photos qu'on a posté, les amis, etc.</h2>
                 </div>
 
-                <div class="container">
-                    <div class="row">
-                        <h1>Ils ont besoin de votre aide</h1>
-                        <div class="col-md-1 no-padding" ng-repeat="image in needHelp">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value}}" alt="...">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <h1>Ils ont besoin de votre aide
+                        <a class="btn btn-success pull-right">Poster une photo</a>
+                    </h1>
+                    <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in needHelp">
+                        <a href="#">
+                            <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value}}" alt="...">
+                        </a>
                     </div>
+                </div>
 
 
-                    <div class="row">
-                        <h1>Ils ont recu votre aide, merci à vous !</h1>
-                        <div class="col-md-1 no-padding" ng-repeat="image in hasFoundMatchingClothes">
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value % 8}}" alt="...">
-                                    </a>
-                                </div>
-                            </div>
+                <div class="row">
+                    <h1>Ils ont recu votre aide, merci à vous !</h1>
+                    <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in hasFoundMatchingClothes">
+                        <div class="image-thumb-wrapper">
+                            <a href="#">
+                                <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value % 8}}" alt="...">
+                                <i class="glyphicon glyphicon-ok-sign {{image.ok ? 'ok' : 'ko'}}"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -65,8 +65,41 @@ will ultimately load to make the ng-cloak display none until $compile thing runs
     list-style-type: none;
 }
 
+.image-thumb-wrapper{
+    position: relative;
+}
+
+.image-thumb-wrapper .glyphicon {
+    position: absolute;
+    right: 2px;
+    top: 76px;
+}
+.image-thumb-wrapper .glyphicon-ok-sign {
+    font-size: large;
+}
+
+.image-thumb-wrapper .glyphicon-ok-sign.ok {
+    color: green;
+}
+
+.image-thumb-wrapper .glyphicon-ok-sign.ko {
+    color: orange;
+}
+
+.image-thumb-wrapper .glyphicon-remove-sign {
+    color: red;
+    font-size: large;
+}
 
 .image-thumb {
     width: 100%;
     height: auto;
+}
+
+.image-thumb:hover {
+    -webkit-filter: brightness(150%);
+}
+
+.margin-bottom-5{
+    margin-bottom: 5px;
 }
