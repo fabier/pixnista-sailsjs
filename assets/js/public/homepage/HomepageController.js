@@ -3,7 +3,7 @@ angular.module('HomepageModule').controller('HomepageController', ['$scope', '$h
         // set-up loginForm loading state
         $scope.loginForm = {
             loading: false
-        }
+        };
 
         $scope.submitLoginForm = function () {
 
@@ -54,7 +54,6 @@ angular.module('HomepageModule').controller('HomepageController', ['$scope', '$h
             'technics',
             'transport'
         ];
-
 
         $scope.needHelp = [];
         for (var i = 0; i < 12; i++) {
