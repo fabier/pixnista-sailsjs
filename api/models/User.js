@@ -13,11 +13,6 @@ module.exports = {
             type: 'string',
             required: true
         },
-        // The user's title at their job (or something)
-        // e.g. Genius
-        title: {
-            type: 'string'
-        },
         // The user's email address
         // e.g. nikola@tesla.com
         email: {
