@@ -24,20 +24,6 @@ module.exports = {
         description: {
             type: 'string'
         },
-        // Date de dernière mise à jour
-        // ex: 2015-02-17T14:34:01
-        lastUpdated: {
-            type: 'date',
-            required: true,
-            defaultsTo: new Date()
-        },
-        // Date de création
-        // ex: 2015-02-17T14:34:01
-        dateCreated: {
-            type: 'date',
-            required: true,
-            defaultsTo: new Date()
-        },
         // ============
         // Associations
         // ============
@@ -47,13 +33,7 @@ module.exports = {
         imageType: {model: 'ImageType'}
         // ============
         // == to Many
-    },
-    // Lifecycle Callbacks
-    beforeUpdate: function (values, cb) {
-        values.lastUpdated = new Date();
-        values.save(function (err, o) {
-            cb();
-        });
     }
+    // Lifecycle Callbacks
 };
 

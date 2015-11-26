@@ -14,20 +14,6 @@ module.exports = {
             type: 'boolean',
             required: true
         },
-        // Date de dernière mise à jour
-        // ex: 2015-02-17T14:34:01
-        lastUpdated: {
-            type: 'date',
-            required: true,
-            defaultsTo: new Date()
-        },
-        // Date de création
-        // ex: 2015-02-17T14:34:01
-        dateCreated: {
-            type: 'date',
-            required: true,
-            defaultsTo: new Date()
-        },
         // ============
         // Associations
         // ============
@@ -37,13 +23,7 @@ module.exports = {
         postComment: {model: 'PostComment'}
         // ============
         // == to Many
-    },
-    // Lifecycle Callbacks
-    beforeUpdate: function (values, cb) {
-        values.lastUpdated = new Date();
-        values.save(function (err, o) {
-            cb();
-        });
     }
+    // Lifecycle Callbacks
 };
 
