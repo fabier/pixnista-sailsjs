@@ -41,6 +41,8 @@
                         fires.  If it's not there (which it wouldn't be in the case of ng-if) then the scope of the signup
                         controller will not be tied to this element. -->
                         <li class="li-no-style">
+                            <img class="header-useravatar" src="<%= me.gravatarUrl %>"/>
+                            <span class="header-username"><%= me.name %></span>
                             <a href="/logout" class="btn btn-warning">Se déconnecter</a>
                         </li>
                         <!-- <a ng-controller="signinController" class="btn btn-default navbar-btn navbar-right" href="#" ng-if="!isAuthenticated">sign-in</a> -->
@@ -54,7 +56,7 @@
             <div class="container">
                 <div class="jumbotron">
                     <h1>Bienvenue chez vous !</h1>
-                    <h2>C'est ici qu'on pourra retrouver les photos qu'on a posté, les amis, etc.</h2>
+                    <h2>C'est ici qu'on pourra retrouver les photos qu'on a postées, les amis, etc.</h2>
                 </div>
 
                 <div class="row">
