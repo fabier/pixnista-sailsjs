@@ -23,7 +23,9 @@ module.exports = {
             type: 'string',
             required: true,
             unique: true,
-            size: 2
+            size: 2,
+            minLength: 2,
+            maxLength: 2
         }
     }
 };
