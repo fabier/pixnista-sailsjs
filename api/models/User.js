@@ -53,7 +53,6 @@ module.exports = {
         country: {model: 'Country'},
         // ============
         // == to Many
-        styles: {collection: 'FashionStyle'},
         followedUsers: {collection: 'User'},
         followingUsers: {collection: 'User'},
         blacklistedUsers: {collection: 'User'},

@@ -35,6 +35,7 @@ module.exports = {
         bodyType: {model: 'BodyType'},
         // ============
         // == to Many
+        fashionStyles: {collection: 'FashionStyle'}
     }
 };
 
