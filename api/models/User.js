@@ -47,8 +47,10 @@ module.exports = {
         // Associations
         // ============
         // == to One
-        bodyType: {model: 'BodyType'},
         image: {model: 'Image'},
+        userProfile: {model: 'UserProfile'},
+        language: {model: 'Language'},
+        country: {model: 'Country'},
         // ============
         // == to Many
         styles: {collection: 'FashionStyle'},
@@ -57,7 +59,7 @@ module.exports = {
         blacklistedUsers: {collection: 'User'},
         incomingMessages: {collection: 'Message'},
         outgoingMessages: {collection: 'Message'},
-        posts: {collection: 'Post'},
+        posts: {collection: 'Post'}
     }
     // Lifecycle Callbacks
 };
