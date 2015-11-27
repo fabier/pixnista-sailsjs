@@ -43,16 +43,38 @@ module.exports = {
             required: true,
             defaultsTo: new Date()
         },
+        // Genre : Homme (M) ou Femme (F)
+        // ex: M
+        gender: {
+            type: 'string',
+            enum: ['M', 'F']
+        },
+        // Date de naissance
+        // ex: 1993-11-10
+        birthdate: {
+            type: 'date'
+        },
+        // Taille de l'utilisateur (en cm)
+        // ex: 185
+        height: {
+            type: 'integer'
+        },
+        // Poids de l'utilisateur (en kg)
+        // ex: 64.5
+        weight: {
+            type: 'float'
+        },
         // ============
         // Associations
         // ============
         // == to One
         image: {model: 'Image'},
-        userProfile: {model: 'UserProfile'},
         language: {model: 'Language'},
         country: {model: 'Country'},
+        bodyType: {model: 'BodyType'},
         // ============
         // == to Many
+        fashionStyles: {collection: 'FashionStyle'},
         followedUsers: {collection: 'User'},
         followingUsers: {collection: 'User'},
         blacklistedUsers: {collection: 'User'},
