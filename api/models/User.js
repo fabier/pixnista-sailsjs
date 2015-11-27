@@ -78,9 +78,25 @@ module.exports = {
         followedUsers: {collection: 'User'},
         followingUsers: {collection: 'User'},
         blacklistedUsers: {collection: 'User'},
-        incomingMessages: {collection: 'Message'},
-        outgoingMessages: {collection: 'Message'},
-        posts: {collection: 'Post'}
+        incomingMessages: {
+            collection: 'Message',
+            via: 'recipient'
+        },
+        outgoingMessages: {
+            collection: 'Message',
+            via: 'creator'},
+        posts: {
+            collection: 'Post',
+            via: 'creator'
+        },
+        postVotes: {
+            collection: 'PostVote',
+            via: 'creator'
+        },
+        postComments: {
+            collection: 'PostComment',
+            via: 'creator'
+        }
     }
     // Lifecycle Callbacks
 };

@@ -25,7 +25,9 @@ module.exports = {
         // ============
         // == to Many
         // Liste des utilisateurs avec ce style vestimentaire
-        users: {collection: 'User'}
+        users: {
+            collection: 'User'
+        }
     }
     // Lifecycle Callbacks
 };

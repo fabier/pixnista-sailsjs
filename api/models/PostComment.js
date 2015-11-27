@@ -24,7 +24,10 @@ module.exports = {
         // ============
         // == to Many
         // La liste des votes pour ce commentaire
-        postCommentVotes: {collection: 'PostCommentVote'}
+        postCommentVotes: {
+            collection: 'PostCommentVote',
+            via: 'postComment'
+        }
     }
     // Lifecycle Callbacks
 };

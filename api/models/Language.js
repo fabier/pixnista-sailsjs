@@ -26,6 +26,16 @@ module.exports = {
             size: 2,
             minLength: 2,
             maxLength: 2
+        },
+        // ============
+        // Associations
+        // ============
+        // == to One
+        // ============
+        // == to Many
+        users: {
+            collection: 'User',
+            via: 'language'
         }
     }
 };

@@ -29,7 +29,10 @@ module.exports = {
         // == to One
         // ============
         // == to Many
-        images: {collection: 'Image'}
+        images: {
+            collection: 'Image',
+            via: 'imageType'
+        }
     }
     // Lifecycle Callbacks
 };

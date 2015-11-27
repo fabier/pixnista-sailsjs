@@ -24,7 +24,10 @@ module.exports = {
         // == to One
         // ============
         // == to Many
-        users: {collection: 'User'}
+        users: {
+            collection: 'User',
+            via: 'bodyType'
+        }
     }
     // Lifecycle Callbacks
 };

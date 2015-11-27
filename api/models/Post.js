@@ -22,7 +22,10 @@ module.exports = {
         visibility: {model: 'Visibility'},
         // ============
         // == to Many
-        postComments: {collection: 'PostComment'}
+        postComments: {
+            collection: 'PostComment',
+            via: 'post'
+        }
     }
     // Lifecycle Callbacks
 };

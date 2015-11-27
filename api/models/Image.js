@@ -28,9 +28,15 @@ module.exports = {
         // Associations
         // ============
         // == to One
-        creator: {model: 'User'},
-        imageData: {model: 'ImageData'},
-        imageType: {model: 'ImageType'}
+        creator: {
+            model: 'User'
+        },
+        imageData: {
+            model: 'ImageData'
+        },
+        imageType: {
+            model: 'ImageType'
+        }
         // ============
         // == to Many
     }

@@ -20,6 +20,10 @@ module.exports = {
         // == to One
         // ============
         // == to Many
+        postVotes: {
+            collection: 'PostVote',
+            via: 'voteReason'
+        }
     }
     // Lifecycle Callbacks
 };

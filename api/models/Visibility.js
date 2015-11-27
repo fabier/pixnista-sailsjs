@@ -25,7 +25,10 @@ module.exports = {
         // ============
         // == to Many
         // Liste des posts avec cette visibilité (publique ou privée)
-        posts: {collection: 'Post'}
+        posts: {
+            collection: 'Post',
+            via: 'visibility'
+        }
     }
     // Lifecycle Callbacks
 };

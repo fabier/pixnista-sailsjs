@@ -23,8 +23,12 @@ module.exports = {
         // ============
         // == to One
         // ============
-        image: {model: 'Image'},
-        imageType: {model: 'ImageType'}
+        image: {
+            model: 'Image'
+        },
+        imageType: {
+            model: 'ImageType'
+        }
         // ============
         // == to Many
     }
