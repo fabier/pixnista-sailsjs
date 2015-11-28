@@ -29,8 +29,14 @@ module.exports = {
         // == to One
         // ============
         // == to Many
+        // Liste des images de ce type
         images: {
             collection: 'Image',
+            via: 'imageType'
+        },
+        // Liste des données binaires de ce type
+        imageDatas: {
+            collection: 'ImageData',
             via: 'imageType'
         }
     }

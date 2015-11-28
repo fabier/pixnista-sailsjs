@@ -68,31 +68,79 @@ module.exports = {
         // Associations
         // ============
         // == to One
-        image: {model: 'Image'},
-        language: {model: 'Language'},
-        country: {model: 'Country'},
-        bodyType: {model: 'BodyType'},
+        // Image (Photo) de cet utilisateur
+        image: {
+            model: 'Image'
+        },
+        // Langue de cet utilisateur
+        language: {
+            model: 'Language'
+        },
+        // Pays de cet utilisateur
+        country: {
+            model: 'Country'
+        },
+        // BodyType de cet utilisateur
+        bodyType: {
+            model: 'BodyType'
+        },
         // ============
         // == to Many
-        fashionStyles: {collection: 'FashionStyle'},
-        followedUsers: {collection: 'User'},
-        followingUsers: {collection: 'User'},
-        blacklistedUsers: {collection: 'User'},
+        // Liste des style vestimentaires de l'utilisateur
+        fashionStyles: {
+            collection: 'FashionStyle',
+            via: 'users',
+            dominant: 'yes'
+        },
+        // Liste des utilisateurs que cet utilisateur suit
+        followedUsers: {
+            collection: 'User',
+            via: 'followedByUsers',
+            dominant: 'yes'
+        },
+        // Liste des utilisateurs qui suivent cet utilisateur
+        followedByUsers: {
+            collection: 'User',
+            via: 'followedUsers'
+        },
+        // Liste des utilisateurs blacklisté par cet utilisateur
+        blacklistedUsers: {
+            collection: 'User',
+            via: 'blacklistedByUsers',
+            dominant: 'yes'
+        },
+        // Liste des utilisateurs qui ont blacklisté cet utilisateur
+        blacklistedByUsers: {
+            collection: 'User',
+            via: 'blacklistedUsers'
+        },
+        // Liste des messages entrants pour cet utilisateur
         incomingMessages: {
             collection: 'Message',
             via: 'recipient'
         },
+        // Liste des messages sortant (émis par) cet utilisateur
         outgoingMessages: {
             collection: 'Message',
-            via: 'creator'},
+            via: 'creator'
+        },
+        // Liste des posts publiés par cet utilisateur
         posts: {
             collection: 'Post',
             via: 'creator'
         },
+        // Posts favoris de cet utilisateur
+        favoritePosts: {
+            collection: 'Post',
+            via: 'favoritedByUsers',
+            dominant: 'yes'
+        },
+        // Votes émis par cet utilisateur sur des posts
         postVotes: {
             collection: 'PostVote',
             via: 'creator'
         },
+        // Commentaires émis par cet utilisateur sur des posts
         postComments: {
             collection: 'PostComment',
             via: 'creator'

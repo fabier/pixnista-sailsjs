@@ -28,17 +28,25 @@ module.exports = {
         // Associations
         // ============
         // == to One
+        // Créateur de l'image
         creator: {
             model: 'User'
         },
+        // Données binaires de l'image
         imageData: {
             model: 'ImageData'
         },
+        // Type d'image (JPG/PNG/etc.)
         imageType: {
             model: 'ImageType'
-        }
+        },
         // ============
         // == to Many
+        // Liste des posts dans lesquels l'image apparait
+        posts: {
+            collection: 'Post',
+            via: 'images'
+        }
     }
     // Lifecycle Callbacks
 };
