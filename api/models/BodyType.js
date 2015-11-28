@@ -24,6 +24,7 @@ module.exports = {
         // == to One
         // ============
         // == to Many
+        // Liste des utilisateurs qui ont déclaré avoir ce BodyType
         users: {
             collection: 'User',
             via: 'bodyType'

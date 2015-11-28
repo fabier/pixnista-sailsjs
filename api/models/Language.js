@@ -7,13 +7,15 @@
 
 module.exports = {
     attributes: {
+        // Nom de la langue
+        // ex: Francais
         name: {
             type: 'string',
             required: true,
             unique: true
         },
-        // Présentation de l'utilisateur
-        // ex: Fashion addict and lover
+        // Autres informations
+        // ex: Francais, Francais Québecois
         description: {
             type: 'string'
         },
@@ -33,6 +35,7 @@ module.exports = {
         // == to One
         // ============
         // == to Many
+        // Liste des utilisateurs qui utilisent cette langue
         users: {
             collection: 'User',
             via: 'language'

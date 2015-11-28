@@ -23,9 +23,11 @@ module.exports = {
         // ============
         // == to One
         // ============
+        // Image (métadonnées) associée à ces données
         image: {
             model: 'Image'
         },
+        // Type d'image
         imageType: {
             model: 'ImageType'
         }

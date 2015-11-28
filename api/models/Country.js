@@ -7,13 +7,15 @@
 
 module.exports = {
     attributes: {
+        // Nom du pays
+        // ex: France
         name: {
             type: 'string',
             required: true,
             unique: true
         },
-        // Présentation de l'utilisateur
-        // ex: Fashion addict and lover
+        // Autres informations sur le pays
+        // ex: France Métropolitaine et DOM TOM
         description: {
             type: 'string'
         },
@@ -33,6 +35,7 @@ module.exports = {
         // == to One
         // ============
         // == to Many
+        // Liste des utilisateurs de ce pays
         users: {
             collection: 'User',
             via: 'country'

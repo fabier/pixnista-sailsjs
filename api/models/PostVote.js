@@ -23,8 +23,14 @@ module.exports = {
         // Associations
         // ============
         // == to One
-        creator: {model: 'User'},
-        voteReason: {model: 'VoteReason'}
+        // Créateur (rédacteur) de ce vote
+        creator: {
+            model: 'User'
+        },
+        // Raison invoquée justifiant le vote
+        voteReason: {
+            model: 'VoteReason'
+        }
         // ============
         // == to Many
     }

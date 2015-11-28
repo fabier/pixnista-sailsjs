@@ -7,10 +7,14 @@
 
 module.exports = {
     attributes: {
+        // Nom de la raison
+        // ex: "Style incorrect"
         name: {
             type: 'string',
             required: true
         },
+        // Description plus longue de la raison
+        // ex: "Dans son ensemble, la tenue n'est pas équilibrée"
         description: {
             type: 'string'
         },
@@ -20,6 +24,7 @@ module.exports = {
         // == to One
         // ============
         // == to Many
+        // Liste des votes sur des posts avec cette raison invoquée
         postVotes: {
             collection: 'PostVote',
             via: 'voteReason'

@@ -17,8 +17,14 @@ module.exports = {
         // Associations
         // ============
         // == to One
-        creator: {model: 'User'},
-        recipient: {model: 'User'}
+        // Créateur (rédacteur) du message
+        creator: {
+            model: 'User'
+        },
+        // Destinataire du message
+        recipient: {
+            model: 'User'
+        }
         // ============
         // == to Many
     }
