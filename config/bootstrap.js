@@ -9,9 +9,44 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
+module.exports.bootstrap = function (cb) {
+    sails.sequence = require('sequence');
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+    // Pour lancer les initialisations dans un ordre prédéfini
+    var sequence = sails.sequence.Sequence.create();
+
+    // Initialisation des listes "statiques"
+    sequence.then(function (next) {
+        sails.log.info("#######################");
+        sails.log.info("## DEBUT : Bootstrap ##");
+        sails.log.info("#######################");
+        next();
+    }).then(function (next) {
+        LanguageService.init(null, next);
+    }).then(function (next) {
+        CountryService.init(null, next);
+    }).then(function (next) {
+        VisibilityService.init(null, next);
+    }).then(function (next, err) {
+        BodyTypeService.init(null, next);
+    }).then(function (next, err) {
+        FashionStyleService.init(null, next);
+    }).then(function (next, err, user) {
+        StateService.init(null, next);
+    }).then(function (next, err) {
+        UserService.init(null, next);
+    }).then(function (next, err, user) {
+        PostService.init(null, next);
+    }).then(function (next, err, post) {
+        sails.log.info("#####################");
+        sails.log.info("## FIN : Bootstrap ##");
+        sails.log.info("#####################");
+        next();
+    }).then(function (next, err) {
+        // It's very important to trigger this callback method when you are finished
+        // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+        cb();
+    });
+
+
 };
