@@ -64,7 +64,7 @@ module.exports = {
         // Encrypt a string using the BCrypt algorithm.
         Passwords.encryptPassword({
             password: req.param('password'),
-            difficulty: 10,
+            difficulty: 10
         }).exec({
             // An unexpected error occurred.
             error: function (err) {
@@ -92,7 +92,7 @@ module.exports = {
                             if (err) {
 
                                 console.log("err: ", err);
-                                console.log("err.invalidAttributes: ", err.invalidAttributes)
+                                console.log("err.invalidAttributes: ", err.invalidAttributes);
 
                                 // If this is a uniqueness error about the email attribute,
                                 // send back an easily parseable status code.
