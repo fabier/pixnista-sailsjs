@@ -7,9 +7,16 @@
 
 module.exports = {
     attributes: {
-        // Nom du pays
-        // ex: France
+        // Nom du pays en anglais
+        // ex: Germany
         name: {
+            type: 'string',
+            required: true,
+            unique: true
+        },
+        // Nom du pays dans la langue d'origine
+        // ex: Deutschland
+        nativeName: {
             type: 'string',
             required: true,
             unique: true

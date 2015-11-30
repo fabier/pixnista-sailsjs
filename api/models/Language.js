@@ -7,9 +7,16 @@
 
 module.exports = {
     attributes: {
-        // Nom de la langue
-        // ex: Francais
+        // Nom de la langue en Anglais
+        // ex: French
         name: {
+            type: 'string',
+            required: true,
+            unique: true
+        },
+        // Nom de la langue dans cette langue
+        // ex: Francais
+        nativeName: {
             type: 'string',
             required: true,
             unique: true
