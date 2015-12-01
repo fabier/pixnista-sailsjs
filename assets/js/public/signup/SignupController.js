@@ -11,7 +11,7 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
             $scope.signupForm.loading = true;
 
             // Submit request to Sails.
-            $http.post('/signup', {
+            $http.post('/user', {
                 name: $scope.signupForm.name,
                 title: $scope.signupForm.title,
                 email: $scope.signupForm.email,

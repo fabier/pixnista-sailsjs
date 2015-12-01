@@ -55,9 +55,9 @@ module.exports = {
         });
     },
     /**
-     * Sign up for a user account.
+     * Create a user account (Signup).
      */
-    signup: function (req, res) {
+    create: function (req, res) {
 
         var Passwords = require('machinepack-passwords');
 
@@ -66,11 +66,9 @@ module.exports = {
             password: req.param('password'),
             difficulty: 10
         }).exec({
-            // An unexpected error occurred.
             error: function (err) {
                 return res.negotiate(err);
             },
-            // OK.
             success: function (encryptedPassword) {
                 require('machinepack-gravatar').getImageUrl({
                     emailAddress: req.param('email')
@@ -79,21 +77,14 @@ module.exports = {
                         return res.negotiate(err);
                     },
                     success: function (gravatarUrl) {
-                        // Create a User with the params sent from
-                        // the sign-up form --> signup.ejs
                         User.create({
                             name: req.param('name'),
-                            title: req.param('title'),
                             email: req.param('email'),
                             encryptedPassword: encryptedPassword,
                             lastLoggedIn: new Date(),
                             gravatarUrl: gravatarUrl
-                        }, function userCreated(err, newUser) {
+                        }, function (err, newUser) {
                             if (err) {
-
-                                console.log("err: ", err);
-                                console.log("err.invalidAttributes: ", err.invalidAttributes);
-
                                 // If this is a uniqueness error about the email attribute,
                                 // send back an easily parseable status code.
                                 if (err.invalidAttributes && err.invalidAttributes.email && err.invalidAttributes.email[0]
@@ -141,6 +132,40 @@ module.exports = {
 
             // Either send a 200 OK or redirect to the home page
             return res.backToHomePage();
+        });
+    },
+    update: function (req, res) {
+        User.findOne({
+            id: req.param('id')
+        }, function (err, user) {
+            if (err)
+                return res.negotiate(err);
+            if (!user)
+                return res.notFound();
+
+            // Utilisateur trouvé, tout va bien
+            var Passwords = require('machinepack-passwords');
+
+            // Encrypt a string using the BCrypt algorithm.
+            Passwords.encryptPassword({
+                password: req.param('password'),
+                difficulty: 10
+            }).exec({
+                error: function (err) {
+                    return res.negotiate(err);
+                },
+                success: function (encryptedPassword) {
+                    User.update({id: user.id},
+                            {encryptedPassword: encryptedPassword},
+                            function (err, updated) {
+                                if (err) {
+                                    return res.negotiate(err);
+                                } else {
+                                    return res.json(updated);
+                                }
+                            }
+                    );
+                }});
         });
     }
 };
