@@ -39,5 +39,21 @@ module.exports = {
             }
             callback(err, post);
         });
+    },
+    jpg: function (options, callback) {
+        findByName('JPEG', callback);
+    },
+    jpeg: function (options, callback) {
+        findByName('JPEG', callback);
+    },
+    png: function (options, callback) {
+        findByName('JPEG', callback);
+    },
+    gif: function (options, callback) {
+        findByName('JPEG', callback);
     }
 };
+
+function findByName(name, callback) {
+    ImageType.findOne({name: name}, callback);
+}

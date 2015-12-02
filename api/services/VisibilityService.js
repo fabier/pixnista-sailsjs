@@ -41,12 +41,16 @@ module.exports = {
         });
     },
     public: function (options, callback) {
-        Visibility.findOne({name: "public"}, callback);
+        findByName('public', callback);
     },
     private: function (options, callback) {
-        Visibility.findOne({name: "private"}, callback);
+        findByName('private', callback);
     },
     restricted: function (options, callback) {
-        Visibility.findOne({name: "restricted"}, callback);
+        findByName('restricted', callback);
     }
 };
+
+function findByName(name, callback) {
+    Visibility.findOne({name: name}, callback);
+}
