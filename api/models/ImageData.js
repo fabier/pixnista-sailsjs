@@ -18,6 +18,16 @@ module.exports = {
         md5: {
             type: 'string'
         },
+        // Largeur de l'image en pixels
+        // ex: 1920
+        width: {
+            type: 'integer'
+        },
+        // Hauteur de l'image en pixels
+        // ex: 1080
+        height: {
+            type: 'integer'
+        },
         // ============
         // Associations
         // ============
