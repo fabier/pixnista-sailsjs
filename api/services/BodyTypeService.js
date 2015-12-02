@@ -16,7 +16,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("BodyTypeService : error initializing bodyTypes !");
                     } else {
-                        sails.log.info("BodyTypeService :", values.length, "bodyTypes now initialized.");
+                        sails.log.info("BodyTypeService :", bodyTypes.length, "bodyTypes now initialized.");
                     }
                     callback();
                 });

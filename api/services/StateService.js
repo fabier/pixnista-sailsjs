@@ -16,7 +16,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("StateService : error initializing states !");
                     } else {
-                        sails.log.info("StateService :", values.length, "states now initialized.");
+                        sails.log.info("StateService :", states.length, "states now initialized.");
                     }
                     callback();
                 });

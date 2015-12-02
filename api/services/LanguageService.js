@@ -15,7 +15,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("LanguageService : error initializing languages !");
                     } else {
-                        sails.log.info("LanguageService :", values.length, "languages now initialized.");
+                        sails.log.info("LanguageService :", languages.length, "languages now initialized.");
                     }
                     callback();
                 });

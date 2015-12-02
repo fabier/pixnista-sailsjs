@@ -13,16 +13,16 @@ module.exports = {
                         sails.log.warn("PostService : Impossible to fetch a user !", err, users);
                         callback();
                     } else {
-                        PostService.createPost({
-                            title: "Mon premier post",
-                            content: "Il s'agit ici d'avoir des données initiales...",
-                            creator: users[0],
-                            visibility: VisibilityService.public()
-                        }, function (err, posts) {
+                        PostService.createPost([{
+                                title: "Mon premier post",
+                                content: "Il s'agit ici d'avoir des données initiales...",
+                                creator: users[Math.floor(Math.random() * users.length)],
+                                visibility: VisibilityService.public()
+                            }], function (err, posts) {
                             if (err) {
                                 sails.log.warn("PostService : error initializing posts !");
                             } else {
-                                sails.log.info("PostService :", values.length, "posts now initialized.");
+                                sails.log.info("PostService :", posts.length, "posts now initialized.");
                             }
                             callback();
                         });

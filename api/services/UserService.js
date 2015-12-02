@@ -12,11 +12,11 @@ module.exports = {
                     name: 'Pierre FABIER',
                     email: 'fabier@free.fr',
                     password: 'pixistù!'
-                }, function (err, users) {
+                }, function (err, user) {
                     if (err) {
                         sails.log.warn("UserService : error initializing users !");
                     } else {
-                        sails.log.info("UserService :", values.length, "users now initialized.");
+                        sails.log.info("UserService : user", user.id, "now initialized.");
                     }
                     callback();
                 });
