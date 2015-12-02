@@ -73,8 +73,8 @@ module.exports = {
     createImage: function (options, callback) {
         findUser({}, function (err, user) {
             var image = _.extend({
-                name: faker.lorem.words(4),
-                filename: faker.lorem.words(1) + '.jpg',
+                name: faker.lorem.sentence(4, 0),
+                filename: faker.lorem.sentence(1, 0) + '.jpg',
                 description: faker.lorem.sentence(),
                 creator: user.id
             }, options);
