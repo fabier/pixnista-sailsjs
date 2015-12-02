@@ -18,13 +18,16 @@ var user, post;
 
 // Description des test unitaires
 describe('Image API', function () {
-    it('init', function (done) {
+
+    // A executer avant de commencer les tests
+    before(function (done) {
         pixnista.findUser(null, function (err, u) {
             user = u;
             image.creator = user.id;
             done();
         });
     });
+
     it('should be able to post a new Image', function (done) {
         request(baseURL()).post('/image').send(image).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);

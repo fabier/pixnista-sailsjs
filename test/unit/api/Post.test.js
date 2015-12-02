@@ -17,7 +17,9 @@ var user, image;
 
 // Description des test unitaires
 describe('Post API', function () {
-    it('init', function (done) {
+
+    // A executer avant de commencer les tests
+    before(function (done) {
         pixnista.findUser(null, function (err, u) {
             user = u;
             post.creator = user.id;
@@ -27,6 +29,7 @@ describe('Post API', function () {
             });
         });
     });
+
     it('should be able to post a new Post', function (done) {
         request(baseURL()).post('/post').send(post).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);
