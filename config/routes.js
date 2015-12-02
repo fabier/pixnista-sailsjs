@@ -41,16 +41,16 @@ module.exports.routes = {
     ////////////////////////////////////////////////////////////
     // JSON API
     ////////////////////////////////////////////////////////////
-
-    // User enrollment + authentication
-    'POST /user': 'UserController.create',
-    'PUT /user/:id': 'UserController.update',
+    //
+    // User authentication
     'PUT /login': 'UserController.login',
-    'GET /logout': 'UserController.logout'
+    'GET /logout': 'UserController.logout',
+    'POST /imageData': 'ImageDataController.create'
 
-            // '/': {
-            //   view: 'homepage'
-            // }
+
+            //
+            ////////////////////////////////////////////////////////////
+            //
 
             /***************************************************************************
              *                                                                          *
@@ -61,5 +61,4 @@ module.exports.routes = {
              * for configuration options and examples.                                  *
              *                                                                          *
              ***************************************************************************/
-
 };
