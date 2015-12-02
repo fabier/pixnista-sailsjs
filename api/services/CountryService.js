@@ -15,8 +15,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("CountryService : error initializing countries !");
                     } else {
-                        sails.log.info(countries);
-                        sails.log.info("CountryService : countries now initialized.");
+                        sails.log.info("CountryService :", values.length, " countries now initialized.");
                     }
                     callback();
                 });

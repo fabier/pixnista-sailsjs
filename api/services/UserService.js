@@ -16,8 +16,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("UserService : error initializing users !");
                     } else {
-                        sails.log.info(users);
-                        sails.log.info("UserService : users now initialized.");
+                        sails.log.info("UserService :", values.length, "users now initialized.");
                     }
                     callback();
                 });

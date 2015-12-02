@@ -30,8 +30,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("FashionStyleService : error initializing fashionStyles !");
                     } else {
-                        sails.log.info(fashionStyles);
-                        sails.log.info("FashionStyleService : fashionStyles now initialized.");
+                        sails.log.info("FashionStyleService :", values.length, "fashionStyles now initialized.");
                     }
                     callback();
                 });

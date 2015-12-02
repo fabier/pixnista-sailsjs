@@ -22,8 +22,7 @@ module.exports = {
                             if (err) {
                                 sails.log.warn("PostService : error initializing posts !");
                             } else {
-                                sails.log.info(posts);
-                                sails.log.info("PostService : posts now initialized.");
+                                sails.log.info("PostService :", values.length, "posts now initialized.");
                             }
                             callback();
                         });

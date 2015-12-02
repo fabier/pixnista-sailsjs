@@ -16,8 +16,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("ImageTypeService : error initializing imageTypes !");
                     } else {
-                        sails.log.info(imageTypes);
-                        sails.log.info("ImageTypeService : imageTypes now initialized.");
+                        sails.log.info("ImageTypeService :", values.length, "imageTypes now initialized.");
                     }
                     callback();
                 });

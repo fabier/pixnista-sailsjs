@@ -16,8 +16,7 @@ module.exports = {
                     if (err) {
                         sails.log.warn("VisibilityService : error initializing visibilities !");
                     } else {
-                        sails.log.info(visibilities);
-                        sails.log.info("VisibilityService : visibilities now initialized.");
+                        sails.log.info("VisibilityService :", values.length, "visibilities now initialized.");
                     }
                     callback();
                 });
