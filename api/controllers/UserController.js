@@ -100,9 +100,7 @@ module.exports = {
                             req.session.me = newUser.id;
 
                             // Send back the id of the new user
-                            return res.json({
-                                id: newUser.id
-                            });
+                            return res.status(201).json({id: newUser.id});
                         });
                     }
                 });
