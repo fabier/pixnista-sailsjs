@@ -10,7 +10,7 @@ module.exports = {
                 sails.log.info("VisibilityService : no visibilities found, initializing...");
                 VisibilityService.createVisibility([
                     {name: "public"},
-                    {name: "restricted"},
+                    {name: "followers"},
                     {name: "private"}
                 ], function (err, visibilities) {
                     if (err) {
@@ -46,8 +46,8 @@ module.exports = {
     private: function (options, callback) {
         findByName('private', callback);
     },
-    restricted: function (options, callback) {
-        findByName('restricted', callback);
+    followers: function (options, callback) {
+        findByName('followers', callback);
     }
 };
 
