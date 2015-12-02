@@ -9,13 +9,14 @@ var pixnista = require('../../fixtures/pixnista.js');
 // Création d'un post (données aléatoires générées)
 var post = {
     title: faker.lorem.sentence(4),
-    content: faker.lorem.sentences()
+    content: faker.lorem.sentences(),
+    creator: null
 };
 
 var user, image;
 
 // Description des test unitaires
-describe('Post', function () {
+describe('Post API', function () {
     it('init', function (done) {
         pixnista.findUser(null, function (err, u) {
             user = u;
