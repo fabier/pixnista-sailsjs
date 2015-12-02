@@ -7,6 +7,12 @@
 
 module.exports = {
     attributes: {
+        // Nom du fichier lorsqu'il a été uploadé
+        // ex: DSC_0048.JPG
+        filename: {
+            type: 'string',
+            required: true
+        },
         // Données brutes de l'image
         data: {
             type: 'binary',
