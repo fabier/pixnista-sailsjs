@@ -1,29 +1,56 @@
 var should = require('should');
 var assert = require('assert');
 var request = require('supertest');
-// var winston = require('winston');
+var faker = require('faker');
+var randomId = require('random-id');
+var winston = require('winston');
+var pixnista = require('../../fixtures/pixnista.js');
 
+// Création d'un post (données aléatoires générées)
+var post = {
+    title: faker.lorem.sentence(4),
+    content: faker.lorem.sentences()
+};
+
+var user, image;
+
+// Description des test unitaires
 describe('Post', function () {
-    var url = 'http://localhost:8080';
-    // within before() you can run all the operations that are needed to setup your tests. In this case
-    // I want to create a connection with the database, and when I'm done, I call done().
-    // before(function (done) {
-    //     done();
-    // });
-    //
-    // use describe to give a title to your test suite, in this case the tile is "Account"
-    // and then specify a function in which we are going to declare all the tests
-    // we want to run. Each test starts with the function it() and as a first argument
-    // we have to provide a meaningful title for it, whereas as the second argument we
-    // specify a function that takes a single parameter, "done", that we will use
-    // to specify when our test is completed, and that's what makes easy
-    // to perform async test!
-    describe('Post', function () {
-        it('should return error trying to save duplicate username', function (done) {
-            done();
+    it('init', function (done) {
+        pixnista.findUser(null, function (err, u) {
+            user = u;
+            post.creator = user.id;
+            pixnista.findImage(null, function (err, i) {
+                image = i;
+                done();
+            });
         });
-        it('should correctly update an existing account', function (done) {
+    });
+    it('should be able to post a new Post', function (done) {
+        request(baseURL()).post('/post').send(post).end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 201);
+            res.should.have.property('body').have.property('id');
+            post.id = res.body.id;
             done();
         });
     });
+    it('should be able to get the newly created Post', function (done) {
+        request(baseURL()).get('/post/' + post.id).end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+        });
+    });
+    it('should be able to delete a Post', function (done) {
+        request(baseURL()).delete('/post/' + post.id).end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+        });
+    });
+    it('should not be able to get a deleted Post', function (done) {
+        request(baseURL()).get('/post/' + post.id).end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 404, done);
+        });
+    });
 });
+
+function baseURL() {
+    return pixnista.baseURL();
+}
