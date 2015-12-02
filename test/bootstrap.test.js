@@ -12,7 +12,6 @@ before(function (done) {
             done(err);
         } else {
             // here you can load fixtures, etc.
-//            var pixnista = require('./fixtures/pixnista.js');
             done(err, sails);
         }
     });
