@@ -17,12 +17,14 @@ module.exports = {
 
             async.map(files, saveFile, function (err, imageDatas) {
                 if (err) {
-                    res.negotiate(res);
+                    res.negotiate(err);
                 } else {
-                    return res.status(201).json({
-                        message: imageDatas.length + ' file(s) uploaded successfully!',
-                        imageDatas: imageDatas
+                    // Suppression de la donnée dans le retour de l'appel
+                    // (pour éviter des flux trop importants)
+                    imageDatas.forEach(function (e) {
+                        delete e.data;
                     });
+                    return res.status(201).json(imageDatas);
                 }
             });
         });
@@ -31,18 +33,26 @@ module.exports = {
     find: function (req, res) {
         res.methodNotAllowed();
     },
+    // Fonction d'affichage d'une image
     findOne: function (req, res) {
         ImageData.findOne(req.param('id'), function (err, imageData) {
             if (err) {
                 res.negotiate(err);
-            } else {
+            } else if (imageData) {
                 res.set('Content-Type', imageData.type);
                 res.send(imageData.data);
+            } else {
+                // Pas de contenu trouvé
+                res.notFound();
             }
         });
     },
     // Il est interdit de mettre à jour les données d'une image
     update: function (req, res) {
+        res.methodNotAllowed();
+    },
+    // Il est interdit de supprimer les données d'une image
+    destroy: function (req, res) {
         res.methodNotAllowed();
     }
 };
