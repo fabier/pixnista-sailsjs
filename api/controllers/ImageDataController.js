@@ -29,7 +29,7 @@ module.exports = {
     },
     // Il est interdit de lister l'ensemble des images
     find: function (req, res) {
-        res.forbidden();
+        res.methodNotAllowed();
     },
     findOne: function (req, res) {
         ImageData.findOne(req.param('id'), function (err, imageData) {
@@ -43,7 +43,7 @@ module.exports = {
     },
     // Il est interdit de mettre à jour les données d'une image
     update: function (req, res) {
-        res.forbidden();
+        res.methodNotAllowed();
     }
 };
 
