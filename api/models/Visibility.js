@@ -8,7 +8,7 @@
 module.exports = {
     attributes: {
         // Nom de l'état de visibilité
-        // ex: public, restricted, private
+        // ex: public, followers, private
         name: {
             type: 'string',
             required: true
@@ -24,7 +24,7 @@ module.exports = {
         // == to One
         // ============
         // == to Many
-        // Liste des posts avec cette visibilité (publique ou privée)
+        // Liste des posts avec cette visibilité (public, followers ou private)
         posts: {
             collection: 'Post',
             via: 'visibility'
