@@ -20,6 +20,7 @@ describe('Post API', function () {
 
     // A executer avant de commencer les tests
     before(function (done) {
+        request = request(pixnista.baseURL());
         pixnista.findUser(null, function (err, u) {
             user = u;
             post.creator = user.id;
@@ -31,7 +32,7 @@ describe('Post API', function () {
     });
 
     it('should be able to post a new Post', function (done) {
-        request(baseURL()).post('/post').send(post).end(function (err, res) {
+        request.post('/post').send(post).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);
             res.should.have.property('body').have.property('id');
             post.id = res.body.id;
@@ -39,22 +40,18 @@ describe('Post API', function () {
         });
     });
     it('should be able to get the newly created Post', function (done) {
-        request(baseURL()).get('/post/' + post.id).end(function (err, res) {
+        request.get('/post/' + post.id).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
     it('should be able to delete a Post', function (done) {
-        request(baseURL()).delete('/post/' + post.id).end(function (err, res) {
+        request.delete('/post/' + post.id).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
     it('should not be able to get a deleted Post', function (done) {
-        request(baseURL()).get('/post/' + post.id).end(function (err, res) {
+        request.get('/post/' + post.id).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 404, done);
         });
     });
 });
-
-function baseURL() {
-    return pixnista.baseURL();
-}

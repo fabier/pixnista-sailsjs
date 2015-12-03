@@ -16,8 +16,14 @@ var user = {
 
 // Description des test unitaires
 describe('User API', function () {
+
+    // A executer avant de commencer les tests
+    before(function () {
+        request = request(pixnista.baseURL());
+    });
+
     it('should correctly create a new account', function (done) {
-        request(baseURL()).post('/user').send(user).end(function (err, res) {
+        request.post('/user').send(user).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);
             res.should.have.property('body').have.property('id');
             user.id = res.body.id;
@@ -25,7 +31,7 @@ describe('User API', function () {
         });
     });
     it('should reject if password is wrong', function (done) {
-        request(baseURL()).put('/login').send({
+        request.put('/login').send({
             email: user.email,
             password: randomId(18) // wrong password
         }).end(function (err, res) {
@@ -33,7 +39,7 @@ describe('User API', function () {
         });
     });
     it('should reject if login is wrong', function (done) {
-        request(baseURL()).put('/login').send({
+        request.put('/login').send({
             email: faker.internet.email(), // wrong login
             password: user.password // existing password
         }).end(function (err, res) {
@@ -41,19 +47,19 @@ describe('User API', function () {
         });
     });
     it('should be able to login using the new created account', function (done) {
-        request(baseURL()).put('/login').send(user).end(function (err, res) {
+        request.put('/login').send(user).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
     it('should correctly update an existing account', function (done) {
-        request(baseURL()).put('/user/' + user.id).send({
+        request.put('/user/' + user.id).send({
             password: user.newpassword // new password
         }).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
     it('should be able to connect using new password provided', function (done) {
-        request(baseURL()).put('/login').send({
+        request.put('/login').send({
             email: user.email,
             password: user.newpassword
         }).end(function (err, res) {
@@ -61,7 +67,7 @@ describe('User API', function () {
         });
     });
     it('should not be able to connect using old password', function (done) {
-        request(baseURL()).put('/login').send({
+        request.put('/login').send({
             email: user.email,
             password: user.password // old password
         }).end(function (err, res) {
@@ -69,12 +75,12 @@ describe('User API', function () {
         });
     });
     it('should be able to delete an account', function (done) {
-        request(baseURL()).delete('/user/' + user.id).send().end(function (err, res) {
+        request.delete('/user/' + user.id).send().end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
     it('should not be able to login with correct credentials if account is deleted', function (done) {
-        request(baseURL()).put('/login').send({
+        request.put('/login').send({
             email: user.email,
             password: user.newpassword
         }).end(function (err, res) {
@@ -82,7 +88,3 @@ describe('User API', function () {
         });
     });
 });
-
-function baseURL() {
-    return pixnista.baseURL();
-}
