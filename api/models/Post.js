@@ -28,6 +28,10 @@ module.exports = {
         visibility: {
             model: 'Visibility'
         },
+        // Type de post (demande d'aide, mon dressing)
+        postType: {
+            model: 'PostType'
+        },
         // ============
         // == to Many
         // Liste des images contenues dans ce post
