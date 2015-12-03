@@ -18,8 +18,9 @@ var user = {
 describe('User API', function () {
 
     // A executer avant de commencer les tests
-    before(function () {
+    before(function (done) {
         request = request(pixnista.baseURL());
+        done();
     });
 
     it('should correctly create a new account', function (done) {
