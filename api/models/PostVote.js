@@ -23,6 +23,10 @@ module.exports = {
         // Associations
         // ============
         // == to One
+        // Le post auquel se réfère ce vote
+        post: {
+            model: 'Post'
+        },
         // Créateur (rédacteur) de ce vote
         creator: {
             model: 'User'

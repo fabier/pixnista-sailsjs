@@ -45,6 +45,11 @@ module.exports = {
             collection: 'PostComment',
             via: 'post'
         },
+        // Liste des votes émis sur ce post
+        postVotes: {
+            collection: 'PostVote',
+            via: 'post'
+        },
         // Liste des utilisateurs qui ont mis ce post en favori
         favoritedByUsers: {
             collection: 'User',
