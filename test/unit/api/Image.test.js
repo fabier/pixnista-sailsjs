@@ -23,7 +23,7 @@ describe('Image API', function () {
         request = request(pixnista.baseURL());
         async.series({
             user: function (callback) {
-                pixnista.findUser(null, callback);
+                pixnista.findRandomUser(null, callback);
             }
         }, function (err, results) {
             image.creator = results.user.id;
@@ -31,6 +31,11 @@ describe('Image API', function () {
         });
     });
 
+    it('should not be a able to list Images', function (done) {
+        request.get('/image').end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
+        });
+    });
     it('should be able to post a new Image', function (done) {
         request.post('/image').send(image).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);

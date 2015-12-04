@@ -24,10 +24,10 @@ describe('Post API', function () {
         request = request(pixnista.baseURL());
         async.series({
             user: function (callback) {
-                pixnista.findUser(null, callback);
+                pixnista.findRandomUser(null, callback);
             },
             image: function (callback) {
-                pixnista.findImage(null, callback);
+                pixnista.findRandomImage(null, callback);
             }
         }, function (err, results) {
             post.creator = results.user.id;
@@ -36,6 +36,11 @@ describe('Post API', function () {
         });
     });
 
+    it('should not be a able to list Posts', function (done) {
+        request.get('/post').end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
+        });
+    });
     it('should be able to post a new Post', function (done) {
         request.post('/post').send(post).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);

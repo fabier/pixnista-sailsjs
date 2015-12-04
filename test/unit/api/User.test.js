@@ -23,6 +23,11 @@ describe('User API', function () {
         done();
     });
 
+    it('should not be a able to list users', function (done) {
+        request.get('/user').end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
+        });
+    });
     it('should correctly create a new account', function (done) {
         request.post('/user').send(user).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);

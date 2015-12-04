@@ -6,7 +6,6 @@ var request = require('supertest');
 var faker = require('faker');
 var randomId = require('random-id');
 var _ = require('underscore');
-
 function baseURL() {
     // Base URL pour les tests
     return 'http://localhost:8080';
@@ -33,20 +32,13 @@ module.exports = {
             password: randomId(18),
             email: faker.internet.email()
         }, options);
-
         request(baseURL()).post('/user').send(user).end(function (err, res) {
             user.id = res.body.id;
             callback(err, user);
         });
     },
-    findUser: function (options, callback) {
-        request(baseURL()).get('/user').end(function (err, res) {
-            if (err) {
-                throw err;
-            }
-            var users = res.body;
-            callback(err, users[Math.floor(Math.random() * users.length)]);
-        });
+    findRandomUser: function (options, callback) {
+        request(baseURL()).get('/user/random').end(callback);
     },
     createPost: function (options, callback) {
         findUser({}, function (err, user) {
@@ -61,14 +53,8 @@ module.exports = {
             });
         });
     },
-    findPost: function (options, callback) {
-        request(baseURL()).get('/post').end(function (err, res) {
-            if (err) {
-                throw err;
-            }
-            var posts = res.body;
-            callback(err, posts[Math.floor(Math.random() * posts.length)]);
-        });
+    findRandomPost: function (options, callback) {
+        request(baseURL()).get('/post/random').end(callback);
     },
     createImage: function (options, callback) {
         findUser({}, function (err, user) {
@@ -84,22 +70,10 @@ module.exports = {
             });
         });
     },
-    findImage: function (options, callback) {
-        request(baseURL()).get('/image').end(function (err, res) {
-            if (err) {
-                throw err;
-            }
-            var images = res.body;
-            callback(err, images[Math.floor(Math.random() * images.length)]);
-        });
+    findRandomImage: function (options, callback) {
+        request(baseURL()).get('/image/random').end(callback);
     },
-    findVoteReason: function (options, callback) {
-        request(baseURL()).get('/voteReason').end(function (err, res) {
-            if (err) {
-                throw err;
-            }
-            var voteReasons = res.body;
-            callback(err, voteReasons[Math.floor(Math.random() * voteReasons.length)]);
-        });
+    findRandomVoteReason: function (options, callback) {
+        request(baseURL()).get('/voteReason/random').end(callback);
     }
 };

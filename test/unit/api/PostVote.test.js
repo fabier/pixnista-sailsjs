@@ -24,19 +24,13 @@ describe('PostVote API', function () {
         request = request(pixnista.baseURL());
         async.series({
             user: function (callback) {
-                pixnista.findUser(null, function (err, user) {
-                    callback(err, user);
-                });
+                pixnista.findRandomUser(null, callback);
             },
             post: function (callback) {
-                pixnista.findPost(null, function (err, post) {
-                    callback(err, post);
-                });
+                pixnista.findRandomPost(null, callback);
             },
             voteReason: function (callback) {
-                pixnista.findVoteReason(null, function (err, voteReason) {
-                    callback(err, voteReason);
-                });
+                pixnista.findRandomVoteReason(null, callback);
             }
         }, function (err, results) {
             postVotePositive.creator = results.user.id;
@@ -50,6 +44,11 @@ describe('PostVote API', function () {
         });
     });
 
+    it('should not be a able to list PostVotes', function (done) {
+        request.get('/postVote').end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
+        });
+    });
     it('should be able to post a new PostVote', function (done) {
         request.post('/postVote').send(postVotePositive).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);

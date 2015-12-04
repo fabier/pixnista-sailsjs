@@ -18,10 +18,10 @@ describe('PostComment API', function () {
         request = request(pixnista.baseURL());
         async.series({
             user: function (callback) {
-                pixnista.findUser(null, callback);
+                pixnista.findRandomUser(null, callback);
             },
             post: function (callback) {
-                pixnista.findPost(null, callback);
+                pixnista.findRandomPost(null, callback);
             }
         }, function (err, results) {
             for (var i = 0; i < numberOfCommentsToGenerate; i++) {
@@ -35,6 +35,11 @@ describe('PostComment API', function () {
         });
     });
 
+    it('should not be a able to list PostComments', function (done) {
+        request.get('/postComment').end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
+        });
+    });
     it('should be able to post a new PostComment', function (done) {
         request.post('/postComment').send(postComments[0]).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 201);

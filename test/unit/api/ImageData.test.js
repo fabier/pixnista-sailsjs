@@ -32,7 +32,7 @@ describe('ImageData API', function () {
                 fs.readFile(imageData.path, callback);
             },
             user: function (callback) {
-                pixnista.findUser(null, callback);
+                pixnista.findRandomUser(null, callback);
             }
         }, function (err, results) {
             imageData.data = results.data;
@@ -42,6 +42,11 @@ describe('ImageData API', function () {
         });
     });
 
+    it('should not be a able to list ImageDatas', function (done) {
+        request.get('/imageData').end(function (err, res) {
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
+        });
+    });
     it('should be able to post a new ImageData', function (done) {
         request.post('/imageData')
 //                .field('extra_info', '{"in":"case you want to send json along with your file"}')
