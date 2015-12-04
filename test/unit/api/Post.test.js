@@ -4,6 +4,7 @@ var request = require('supertest');
 var faker = require('faker');
 var randomId = require('random-id');
 var winston = require('winston');
+var async = require('async');
 var pixnista = require('../../fixtures/pixnista.js');
 
 // Création d'un post (données aléatoires générées)
@@ -13,7 +14,7 @@ var post = {
     creator: null
 };
 
-var user, image;
+var image;
 
 // Description des test unitaires
 describe('Post API', function () {
@@ -21,13 +22,17 @@ describe('Post API', function () {
     // A executer avant de commencer les tests
     before(function (done) {
         request = request(pixnista.baseURL());
-        pixnista.findUser(null, function (err, u) {
-            user = u;
-            post.creator = user.id;
-            pixnista.findImage(null, function (err, i) {
-                image = i;
-                done();
-            });
+        async.series({
+            user: function (callback) {
+                pixnista.findUser(null, callback);
+            },
+            image: function (callback) {
+                pixnista.findImage(null, callback);
+            }
+        }, function (err, results) {
+            post.creator = results.user.id;
+            image = results.image;
+            done();
         });
     });
 

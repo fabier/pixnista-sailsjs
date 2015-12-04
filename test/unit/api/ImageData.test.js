@@ -4,6 +4,7 @@ var request = require('supertest');
 var faker = require('faker');
 var randomId = require('random-id');
 var winston = require('winston');
+var async = require('async');
 var md5 = require('md5');
 var fs = require('fs');
 var pixnista = require('../../fixtures/pixnista.js');
@@ -20,25 +21,24 @@ var imageData = {
     creator: null
 };
 
-var user, post;
-
 // Description des test unitaires
 describe('ImageData API', function () {
 
     // A executer avant de commencer les tests
     before(function (done) {
         request = request(pixnista.baseURL());
-        fs.readFile(imageData.path, function (err, data) {
-            if (err) {
-                throw err;
+        async.series({
+            data: function (callback) {
+                fs.readFile(imageData.path, callback);
+            },
+            user: function (callback) {
+                pixnista.findUser(null, callback);
             }
-            imageData.data = data;
-            imageData.md5 = md5(data);
-            pixnista.findUser(null, function (err, u) {
-                user = u;
-                imageData.creator = user.id;
-                done();
-            });
+        }, function (err, results) {
+            imageData.data = results.data;
+            imageData.md5 = md5(results.data);
+            imageData.creator = results.user.id;
+            done();
         });
     });
 
@@ -74,8 +74,7 @@ describe('ImageData API', function () {
     });
     it('should still be able to get the ImageData we just tried to delete', function (done) {
         request.get('/imageData/' + imageData.id).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200);
-            done();
+            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
 });
