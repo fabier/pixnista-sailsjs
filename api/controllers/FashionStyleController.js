@@ -6,6 +6,14 @@
  */
 
 module.exports = {
-	
+    create: function (req, res) {
+        res.forbidden();
+    },
+    update: function (req, res) {
+        res.forbidden();
+    },
+    destroy: function (req, res) {
+        res.forbidden();
+    }
 };
 
