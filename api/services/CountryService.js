@@ -8,7 +8,7 @@ module.exports = {
         Country.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("CountryService : no countries found, initializing...");
-                CountryService.createCountry([
+                CountryService.create([
                     {name: "France", nativeName: "France", isocode31661: "FR"},
                     {name: "England", nativeName: "England", isocode31661: "EN"}
                 ], function (err, countries) {
@@ -31,7 +31,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createCountry: function (options, callback) {
+    create: function (options, callback) {
         Country.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("CountryService : Impossible to create a Country", options, err);

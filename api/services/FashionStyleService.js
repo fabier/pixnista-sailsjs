@@ -8,7 +8,7 @@ module.exports = {
         FashionStyle.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("FashionStyleService : no fashionStyles found, initializing...");
-                FashionStyleService.createFashionStyle([
+                FashionStyleService.create([
                     {name: "bohemian"},
                     {name: "arty"},
                     {name: "chic"},
@@ -46,7 +46,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createFashionStyle: function (options, callback) {
+    create: function (options, callback) {
         FashionStyle.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("FashionStyleService : Impossible to create FashionStyle", options, err);

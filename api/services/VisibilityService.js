@@ -8,7 +8,7 @@ module.exports = {
         Visibility.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("VisibilityService : no visibilities found, initializing...");
-                VisibilityService.createVisibility([
+                VisibilityService.create([
                     {name: "public"},
                     {name: "followers"},
                     {name: "private"}
@@ -32,7 +32,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createVisibility: function (options, callback) {
+    create: function (options, callback) {
         Visibility.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("VisibilityService : Impossible to create Visibility", options, err);

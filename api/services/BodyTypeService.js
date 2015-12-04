@@ -8,7 +8,7 @@ module.exports = {
         BodyType.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("BodyTypeService : no bodyTypes found, initializing...");
-                BodyTypeService.createBodyType([
+                BodyTypeService.create([
                     {name: "skinny"},
                     {name: "average"},
                     {name: "big"}
@@ -32,7 +32,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createBodyType: function (options, callback) {
+    create: function (options, callback) {
         BodyType.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("BodyTypeService : Impossible to create a BodyType", options, err);

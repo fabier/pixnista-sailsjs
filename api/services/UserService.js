@@ -8,7 +8,7 @@ module.exports = {
         User.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("UserService : no users found, initializing...");
-                UserService.createUser({
+                UserService.create({
                     name: 'Pierre FABIER',
                     email: 'fabier@free.fr',
                     password: 'pixistù!'
@@ -32,7 +32,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createUser: function (options, callback) {
+    create: function (options, callback) {
         var Passwords = require('machinepack-passwords');
         // Encrypt a string using the BCrypt algorithm.
         Passwords.encryptPassword({

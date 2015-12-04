@@ -8,7 +8,7 @@ module.exports = {
         Language.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("LanguageService : no languages found, initializing...");
-                LanguageService.createLanguage([
+                LanguageService.create([
                     {name: "French", nativeName: "Francais", isocode6391: "fr"},
                     {name: "English", nativeName: "English", isocode6391: "en"}
                 ], function (err, languages) {
@@ -31,7 +31,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createLanguage: function (options, callback) {
+    create: function (options, callback) {
         Language.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("LanguageService : Impossible to create a Language", options, err);

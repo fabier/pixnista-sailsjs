@@ -8,7 +8,7 @@ module.exports = {
         PostType.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("PostTypeService : no postTypes found, initializing...");
-                PostTypeService.createPostType([
+                PostTypeService.create([
                     {name: "help"},
                     {name: "dressing"}
                 ], function (err, postTypes) {
@@ -31,7 +31,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createPostType: function (options, callback) {
+    create: function (options, callback) {
         PostType.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("PostTypeService : Impossible to create PostType", options, err);

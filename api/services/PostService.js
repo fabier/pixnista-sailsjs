@@ -13,7 +13,7 @@ module.exports = {
                         sails.log.warn("PostService : Impossible to fetch a user !", err, users);
                         callback();
                     } else {
-                        PostService.createPost([{
+                        PostService.create([{
                                 title: "Mon premier post",
                                 content: "Il s'agit ici d'avoir des données initiales...",
                                 creator: users[Math.floor(Math.random() * users.length)],
@@ -40,7 +40,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createPost: function (options, callback) {
+    create: function (options, callback) {
         Post.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("PostService : Impossible to create Post", options, err);

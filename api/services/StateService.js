@@ -8,7 +8,7 @@ module.exports = {
         State.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("StateService : no states found, initializing...");
-                StateService.createState([
+                StateService.create([
                     {name: "active"},
                     {name: "inactive"},
                     {name: "deleted"}
@@ -32,7 +32,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createState: function (options, callback) {
+    create: function (options, callback) {
         State.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("StateService : Impossible to create a State", options, err);

@@ -8,7 +8,7 @@ module.exports = {
         ImageType.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("ImageTypeService : no imageTypes found, initializing...");
-                ImageTypeService.createImageType([
+                ImageTypeService.create([
                     {name: "JPEG", extension: "jpg"},
                     {name: "PNG", extension: "png"},
                     {name: "GIF", extension: "gif"}
@@ -32,7 +32,7 @@ module.exports = {
      * @param {type} callback
      * @returns {undefined}
      */
-    createImageType: function (options, callback) {
+    create: function (options, callback) {
         ImageType.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("ImageTypeService : Impossible to create a ImageType", options, err);
