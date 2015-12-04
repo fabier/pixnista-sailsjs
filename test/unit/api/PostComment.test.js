@@ -18,14 +18,10 @@ describe('PostComment API', function () {
         request = request(pixnista.baseURL());
         async.series({
             user: function (callback) {
-                pixnista.findUser(null, function (err, user) {
-                    callback(err, user);
-                });
+                pixnista.findUser(null, callback);
             },
             post: function (callback) {
-                pixnista.findPost(null, function (err, post) {
-                    callback(err, post);
-                });
+                pixnista.findPost(null, callback);
             }
         }, function (err, results) {
             for (var i = 0; i < numberOfCommentsToGenerate; i++) {
