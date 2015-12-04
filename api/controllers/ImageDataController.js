@@ -31,7 +31,7 @@ module.exports = {
     },
     // Il est interdit de lister l'ensemble des images
     find: function (req, res) {
-        res.methodNotAllowed();
+        res.forbidden();
     },
     // Fonction d'affichage d'une image
     findOne: function (req, res) {
