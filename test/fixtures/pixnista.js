@@ -75,5 +75,8 @@ module.exports = {
     },
     findRandomVoteReason: function (options, callback) {
         request(baseURL()).get('/voteReason/random').end(callback);
+    },
+    findRandomPostComment: function (options, callback) {
+        request(baseURL()).get('/postComment/random').end(callback);
     }
 };
