@@ -22,30 +22,30 @@ describe('PostVote API', function () {
     // A executer avant de commencer les tests
     before(function (done) {
         request = request(pixnista.baseURL());
-        async.series([
-            function (callback) {
-                pixnista.findUser(null, function (err, u) {
-                    postVotePositive.creator = u.id;
-                    postVoteNegative.creator = u.id;
-                    callback(err, u);
+        async.series({
+            user: function (callback) {
+                pixnista.findUser(null, function (err, user) {
+                    callback(err, user);
                 });
             },
-            function (callback) {
-                pixnista.findPost(null, function (err, p) {
-                    postVotePositive.post = p.id;
-                    postVoteNegative.post = p.id;
-                    callback(err, p);
+            post: function (callback) {
+                pixnista.findPost(null, function (err, post) {
+                    callback(err, post);
                 });
             },
-            function (callback) {
-                pixnista.findVoteReason(null, function (err, vr) {
-                    // Raison non renseignée pour un vote positif
-                    postVotePositive.voteReason = null;
-                    postVoteNegative.voteReason = vr.id;
-                    callback(err, vr);
+            voteReason: function (callback) {
+                pixnista.findVoteReason(null, function (err, voteReason) {
+                    callback(err, voteReason);
                 });
             }
-        ], function (err, results) {
+        }, function (err, results) {
+            postVotePositive.creator = results.user.id;
+            postVoteNegative.creator = results.user.id;
+            postVotePositive.post = results.post.id;
+            postVoteNegative.post = results.post.id;
+            // Raison non renseignée pour un vote positif
+            postVotePositive.voteReason = null;
+            postVoteNegative.voteReason = results.voteReason.id;
             done();
         });
     });
