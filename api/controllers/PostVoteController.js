@@ -6,6 +6,12 @@
  */
 
 module.exports = {
+    /**
+     * Il est interdit de lister les votes de posts depuis l'API Rest
+     */
+    find: function (req, res) {
+        res.forbidden();
+    },
     create: function (req, res) {
         var postVote = {
             vote: req.param('vote'),

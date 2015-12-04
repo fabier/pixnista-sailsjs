@@ -7,6 +7,12 @@
 
 module.exports = {
     /**
+     * Il est interdit de lister les utilisateurs depuis l'API Rest
+     */
+    find: function (req, res) {
+        res.forbidden();
+    },
+    /**
      * Check the provided email address and password, and if they
      * match a real user in the database, sign in.
      */

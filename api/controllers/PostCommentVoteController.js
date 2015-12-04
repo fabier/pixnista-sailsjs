@@ -6,6 +6,11 @@
  */
 
 module.exports = {
-	
+    /**
+     * Il est interdit de lister les votes de commentaires depuis l'API Rest
+     */
+    find: function (req, res) {
+        res.forbidden();
+    }
 };
 
