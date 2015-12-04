@@ -37,6 +37,8 @@ module.exports.bootstrap = function (cb) {
         UserService.init(null, next);
     }).then(function (next, err, user) {
         PostService.init(null, next);
+    }).then(function (next, err, user) {
+        VoteReasonService.init(null, next);
     }).then(function (next, err, post) {
         sails.log.info("#####################");
         sails.log.info("## FIN : Bootstrap ##");
