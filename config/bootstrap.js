@@ -31,15 +31,17 @@ module.exports.bootstrap = function (cb) {
         BodyTypeService.init(null, next);
     }).then(function (next, err) {
         FashionStyleService.init(null, next);
-    }).then(function (next, err, user) {
+    }).then(function (next, err) {
         StateService.init(null, next);
     }).then(function (next, err) {
-        UserService.init(null, next);
-    }).then(function (next, err, user) {
-        PostService.init(null, next);
-    }).then(function (next, err, user) {
         VoteReasonService.init(null, next);
-    }).then(function (next, err, post) {
+    }).then(function (next, err) {
+        ImageTypeService.init(null, next);
+    }).then(function (next, err) {
+        UserService.init(null, next);
+    }).then(function (next, err) {
+        PostService.init(null, next);
+    }).then(function (next, err) {
         sails.log.info("#####################");
         sails.log.info("## FIN : Bootstrap ##");
         sails.log.info("#####################");
