@@ -15,7 +15,7 @@ var visibility = {
     description: faker.lorem.sentences()
 };
 
-var randomVisibility, visibilitys;
+var randomVisibility, visibilities;
 
 // Description des test unitaires
 describe('Visibility API', function () {
@@ -26,12 +26,12 @@ describe('Visibility API', function () {
         done();
     });
 
-    it('should be able to list the existing Visibilitys', function (done) {
+    it('should be able to list the existing Visibilities', function (done) {
         request.get('/visibility').end(function (err, res) {
             res.body.should.be.Array();
             res.body.length.should.be.above(1);
-            visibilitys = res.body;
-            randomVisibility = visibilitys[Math.floor(Math.random() * visibilitys.length)];
+            visibilities = res.body;
+            randomVisibility = visibilities[Math.floor(Math.random() * visibilities.length)];
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
