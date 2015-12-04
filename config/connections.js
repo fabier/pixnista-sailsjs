@@ -53,6 +53,7 @@ module.exports.connections = {
      * Run: npm install sails-mongo                                             *
      *                                                                          *
      ***************************************************************************/
+    // Chaine de connexion de production
     mongodb: {
         adapter: 'sails-mongo',
         host: 'localhost',
@@ -60,6 +61,15 @@ module.exports.connections = {
         // user: 'username',
         // password: 'password',
         database: 'pixnista'
+    },
+    // Chaine de connexion pour la base de données de dev/test
+    "mongodb-dev": {
+        adapter: 'sails-mongo',
+        host: 'localhost',
+        port: 27017,
+        // user: 'username',
+        // password: 'password',
+        database: 'pixnista-dev'
     },
     /***************************************************************************
      *                                                                          *
