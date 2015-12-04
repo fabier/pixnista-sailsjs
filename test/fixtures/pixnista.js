@@ -92,5 +92,14 @@ module.exports = {
             var images = res.body;
             callback(err, images[Math.floor(Math.random() * images.length)]);
         });
+    },
+    findVoteReason: function (options, callback) {
+        request(baseURL()).get('/voteReason').end(function (err, res) {
+            if (err) {
+                throw err;
+            }
+            var voteReasons = res.body;
+            callback(err, voteReasons[Math.floor(Math.random() * voteReasons.length)]);
+        });
     }
 };
