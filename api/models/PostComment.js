@@ -18,9 +18,13 @@ module.exports = {
         // ============
         // == to One
         // L'utilisateur qui a fait le commentaire
-        creator: {model: 'User'},
+        creator: {
+            model: 'User'
+        },
         // Le post auquel se réfère ce commentaire
-        post: {model: 'Post'},
+        post: {
+            model: 'Post'
+        },
         // ============
         // == to Many
         // La liste des votes pour ce commentaire
