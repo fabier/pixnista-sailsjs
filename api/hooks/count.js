@@ -28,7 +28,7 @@ module.exports = function (sails) {
                 _.forEach(sails.models, function (model) {
 //                    if (!_.get(sails.middleware.controllers, model.identity))
 //                        return;
-                    var controller = sails.middleware.controllers[model.identity]
+                    var controller = sails.middleware.controllers[model.identity];
                     if (controller === undefined)
                         return;
                     var baseRoute = [config.prefix, model.identity].join('/');
@@ -41,7 +41,7 @@ module.exports = function (sails) {
             });
             cb();
         }
-    }
+    };
 };
 
 
