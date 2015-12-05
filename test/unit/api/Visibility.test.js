@@ -35,7 +35,7 @@ describe('Visibility API', function () {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
-    it('should not be able to get a Visibility by its ID', function (done) {
+    it('should be able to get a Visibility by its ID', function (done) {
         request.get('/visibility/' + randomVisibility.id).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });

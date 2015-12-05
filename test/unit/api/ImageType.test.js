@@ -35,7 +35,7 @@ describe('ImageType API', function () {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
-    it('should not be able to get a ImageType by its ID', function (done) {
+    it('should be able to get a ImageType by its ID', function (done) {
         request.get('/imageType/' + randomImageType.id).end(function (err, res) {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
