@@ -4,14 +4,14 @@
  * @description :: Service for managing visibilities (public, friends, private)
  */
 module.exports = {
-    init: function (options, callback) {
+    init: function (callback) {
         ImageType.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("ImageTypeService : no imageTypes found, initializing...");
                 ImageTypeService.create([
-                    {name: "JPEG", extension: "jpg"},
-                    {name: "PNG", extension: "png"},
-                    {name: "GIF", extension: "gif"}
+                    {name: "JPEG", extensions: ["jpg", 'jpeg']},
+                    {name: "PNG", extensions: ["png"]},
+                    {name: "GIF", extensions: ["gif"]}
                 ], function (err, imageTypes) {
                     if (err) {
                         sails.log.warn("ImageTypeService : error initializing imageTypes !");
@@ -40,16 +40,16 @@ module.exports = {
             callback(err, post);
         });
     },
-    jpg: function (options, callback) {
+    jpg: function (callback) {
         findByName('JPEG', callback);
     },
-    jpeg: function (options, callback) {
+    jpeg: function (callback) {
         findByName('JPEG', callback);
     },
-    png: function (options, callback) {
+    png: function (callback) {
         findByName('JPEG', callback);
     },
-    gif: function (options, callback) {
+    gif: function (callback) {
         findByName('JPEG', callback);
     }
 };

@@ -11,17 +11,18 @@ module.exports = {
         // ex: JPEG, PNG
         name: {
             type: 'string',
-            required: true
+            required: true,
+            unique: true
         },
         // Description du type d'image
         // ex: Image JPEG
         description: {
             type: 'string'
         },
-        // Description du type d'image
-        // ex: jpg
-        extension: {
-            type: 'string'
+        // Extensions possibles du type d'image
+        // ex: ['jpg', 'jpeg']
+        extensions: {
+            type: 'array'
         },
         // ============
         // Associations
