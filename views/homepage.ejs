@@ -72,9 +72,9 @@
                 <h1>Ils ont besoin de votre aide
                     <a class="btn btn-success pull-right">Poster une photo</a>
                 </h1>
-                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in needHelp">
+                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in help">
                     <a href="#">
-                        <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value}}" alt="...">
+                        <img class="media-object image-thumb" src="{{image.url}}" alt="...">
                     </a>
                 </div>
             </div>
@@ -82,10 +82,10 @@
 
             <div class="row">
                 <h1>Ils ont recu votre aide, merci à vous !</h1>
-                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in hasFoundMatchingClothes">
+                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="image in dressing">
                     <div class="image-thumb-wrapper">
                         <a href="#">
-                            <img class="media-object image-thumb" src="http://www.lorempixum.com/128/128/{{image.category}}/{{image.value % 8}}" alt="...">
+                            <img class="media-object image-thumb" src="{{image.url}}" alt="...">
                             <i class="glyphicon glyphicon-ok-sign {{image.ok ? 'ok' : 'ko'}}"></i>
                         </a>
                     </div>
