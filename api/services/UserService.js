@@ -58,7 +58,7 @@ function createOneUser(options, callback) {
         password: options.password,
         difficulty: 10
     }).exec({
-// An unexpected error occurred.
+        // An unexpected error occurred.
         error: function (err) {
             sails.log.warn("UserService : Impossible to create a User (step encrypt password)", options)
             callback(err);
@@ -94,6 +94,8 @@ function createOneUser(options, callback) {
                             }
                         }
 
+                        delete user.password;
+                        delete user.encryptedPassword;
                         callback(err, user);
                     });
                 }
