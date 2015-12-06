@@ -53,5 +53,8 @@
     "node": "4.2.2"
   },
   "author": "fabier",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "env-test": "^1.0.0"
+  }
 }

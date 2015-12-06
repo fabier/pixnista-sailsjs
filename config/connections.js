@@ -62,7 +62,7 @@ module.exports.connections = {
         // password: 'password',
         database: 'pixnista'
     },
-    // Chaine de connexion pour la base de données de dev/test
+    // Chaine de connexion pour la base de données de dev
     "mongodb-dev": {
         adapter: 'sails-mongo',
         host: 'localhost',
@@ -70,6 +70,15 @@ module.exports.connections = {
         // user: 'username',
         // password: 'password',
         database: 'pixnista-dev'
+    },
+    // Chaine de connexion pour la base de données de test
+    "mongodb-test": {
+        adapter: 'sails-mongo',
+        host: 'localhost',
+        port: 27017,
+        // user: 'username',
+        // password: 'password',
+        database: 'pixnista-test'
     },
     /***************************************************************************
      *                                                                          *
