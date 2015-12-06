@@ -8,6 +8,7 @@ var async = require('async');
 var faker = require('faker');
 var randomId = require('random-id');
 var fs = require('fs');
+var _ = require('underscore');
 var request = require('request');
 
 var downloadAsBuffer = function (uri, callback) {
@@ -21,10 +22,18 @@ module.exports = {
     init: function (callback) {
         sails.log.info("FakerService - DEBUT DE LA CREATION DE DONNEES GENEREES");
         // Création des utilisateurs
+        var users = [];
         async.parallel({
             users: function (callback) {
                 sails.log.info("FakerService - Users being created... please wait...");
-                createRandomUsers(callback);
+                for (var i = 0; i < userCount; i++) {
+                    users.push({
+                        name: faker.name.findName(),
+                        password: randomId(18),
+                        email: faker.internet.email()
+                    });
+                }
+                UserService.create(users, callback);
             },
             imageType: function (callback) {
                 ImageTypeService.jpg(callback);
@@ -42,7 +51,6 @@ module.exports = {
             if (err) {
                 throw err;
             }
-            var users = results.users;
             var imageType = results.imageType;
             var visibility = results.visibility;
             var postType = results.postType;
@@ -51,11 +59,15 @@ module.exports = {
             var comments = [];
             var votes = [];
             sails.log.info("FakerService - " + users.length + " Users created");
+            sails.log.info(users);
+            // Affichage de login et password pour test
+//            sails.log.info(_.pluck(users, ["email", "password"]));
+
             // Pour chaque utilisateur créé,
             // on crée un jeu de données comprenant des posts avec
             // un titre, un commentaire et une image à chaque fois
             sails.log.info("FakerService - Posts being created for all users... please wait...");
-            async.each(users, function (user, callback) {
+            async.each(results.users, function (user, callback) {
                 async.waterfall([
                     // Création de données image
                     function (callback) {
@@ -78,7 +90,7 @@ module.exports = {
                 }
                 sails.log.info("FakerService - " + posts.length + " Posts created for all users");
                 sails.log.info("FakerService - Comments and votes being created for all users... please wait...");
-                async.each(users, function (user, callback) {
+                async.each(results.users, function (user, callback) {
                     async.parallel({
                         // Ajout de votes aux posts créés
                         votes: function (callback) {
@@ -110,18 +122,6 @@ module.exports = {
         });
     }
 };
-
-function createRandomUsers(callback) {
-    var users = [];
-    for (var i = 0; i < userCount; i++) {
-        users.push({
-            name: faker.name.findName(),
-            password: randomId(18),
-            email: faker.internet.email()
-        });
-    }
-    UserService.create(users, callback);
-}
 
 function createRandomImages(user, imageType, callback) {
     var url = 'http://loremflickr.com/128/128/selfie,fashion';
