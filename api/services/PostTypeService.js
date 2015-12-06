@@ -4,7 +4,7 @@
  * @description :: Service for managing postTypes (public, friends, private)
  */
 module.exports = {
-    init: function (options, callback) {
+    init: function (callback) {
         PostType.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("PostTypeService : no postTypes found, initializing...");
@@ -39,10 +39,10 @@ module.exports = {
             callback(err, post);
         });
     },
-    help: function (options, callback) {
+    help: function (callback) {
         findByName('help', callback);
     },
-    dressing: function (options, callback) {
+    dressing: function (callback) {
         findByName('dressing', callback);
     }
 };

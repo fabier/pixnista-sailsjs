@@ -4,7 +4,7 @@
  * @description :: Service for managing voteReasons (public, friends, private)
  */
 module.exports = {
-    init: function (options, callback) {
+    init: function (callback) {
         VoteReason.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("VoteReason : no voteReasons found, initializing...");
@@ -34,23 +34,31 @@ module.exports = {
      * @returns {undefined}
      */
     create: function (options, callback) {
-        VoteReason.create(options, function (err, post) {
+        VoteReason.create(options, function (err, voteReason) {
             if (err) {
                 sails.log.warn("VoteReason : Impossible to create VoteReason", options, err);
             }
-            callback(err, post);
+            callback(err, voteReason);
         });
     },
-    style: function (options, callback) {
+    find: function (options, callback) {
+        VoteReason.find(options, function (err, voteReasons) {
+            if (err) {
+                sails.log.warn("VoteReason : Impossible to find VoteReasons", options, err);
+            }
+            callback(err, voteReasons);
+        });
+    },
+    style: function (callback) {
         findByName('style', callback);
     },
-    color: function (options, callback) {
+    color: function (callback) {
         findByName('color', callback);
     },
-    shape: function (options, callback) {
+    shape: function (callback) {
         findByName('shape', callback);
     },
-    size: function (options, callback) {
+    size: function (callback) {
         findByName('size', callback);
     }
 };

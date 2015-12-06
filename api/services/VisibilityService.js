@@ -4,7 +4,7 @@
  * @description :: Service for managing visibilities (public, friends, private)
  */
 module.exports = {
-    init: function (options, callback) {
+    init: function (callback) {
         Visibility.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("VisibilityService : no visibilities found, initializing...");
@@ -40,13 +40,13 @@ module.exports = {
             callback(err, post);
         });
     },
-    public: function (options, callback) {
+    public: function (callback) {
         findByName('public', callback);
     },
-    private: function (options, callback) {
+    private: function (callback) {
         findByName('private', callback);
     },
-    followers: function (options, callback) {
+    followers: function (callback) {
         findByName('followers', callback);
     }
 };

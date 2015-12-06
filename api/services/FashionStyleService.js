@@ -4,7 +4,7 @@
  * @description :: Service for managing visibilities (public, friends, private)
  */
 module.exports = {
-    init: function (options, callback) {
+    init: function (callback) {
         FashionStyle.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("FashionStyleService : no fashionStyles found, initializing...");

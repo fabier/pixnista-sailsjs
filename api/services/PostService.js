@@ -4,7 +4,7 @@
  * @description :: Service for managing posts
  */
 module.exports = {
-    init: function (options, callback) {
+    init: function (callback) {
         Post.find(null, function (err, values) {
             if (values.length === 0) {
                 sails.log.info("PostService : no posts found, initializing...");
