@@ -45,20 +45,23 @@ module.exports.routes = {
     // User authentication
     'PUT /login': 'UserController.login',
     'GET /logout': 'UserController.logout',
-    'POST /imageData': 'ImageDataController.create'
+    'POST /imageData': 'ImageDataController.create',
+    //
+    ////////////////////////////////////////////////////////////
+    //
 
+    /***************************************************************************
+     *                                                                          *
+     * Custom routes here...                                                    *
+     *                                                                          *
+     *  If a request to a URL doesn't match any of the custom routes above, it  *
+     * is matched against Sails route blueprints. See `config/blueprints.js`    *
+     * for configuration options and examples.                                  *
+     *                                                                          *
+     ***************************************************************************/
 
-            //
-            ////////////////////////////////////////////////////////////
-            //
-
-            /***************************************************************************
-             *                                                                          *
-             * Custom routes here...                                                    *
-             *                                                                          *
-             *  If a request to a URL doesn't match any of the custom routes above, it  *
-             * is matched against Sails route blueprints. See `config/blueprints.js`    *
-             * for configuration options and examples.                                  *
-             *                                                                          *
-             ***************************************************************************/
+    // Liste des posts qui ont besoin d'aide
+    'GET /post/help/:limit': 'PostController.help',
+    'GET /post/dressing/:limit': 'PostController.dressing',
+    'GET /image/show': 'ImageController.show'
 };
