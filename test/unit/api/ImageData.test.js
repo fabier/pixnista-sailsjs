@@ -27,7 +27,7 @@ describe('ImageData API', function () {
     // A executer avant de commencer les tests
     before(function (done) {
         request = request(pixnista.baseURL());
-        async.series({
+        async.parallel({
             data: function (callback) {
                 fs.readFile(imageData.path, callback);
             },

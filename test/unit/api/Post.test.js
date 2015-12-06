@@ -22,7 +22,7 @@ describe('Post API', function () {
     // A executer avant de commencer les tests
     before(function (done) {
         request = request(pixnista.baseURL());
-        async.series({
+        async.parallel({
             user: function (callback) {
                 pixnista.findRandomUser(null, callback);
             },
