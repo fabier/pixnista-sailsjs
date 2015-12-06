@@ -6,28 +6,6 @@
 var async = require('async');
 
 module.exports = {
-    init: function (callback) {
-        User.find(null, function (err, values) {
-            if (values.length === 0) {
-                sails.log.info("UserService : no users found, initializing...");
-                UserService.create({
-                    name: 'Pierre FABIER',
-                    email: 'fabier@free.fr',
-                    password: 'pixistù!'
-                }, function (err, user) {
-                    if (err) {
-                        sails.log.warn("UserService : error initializing users !");
-                    } else {
-                        sails.log.info("UserService : user", user.id, "now initialized.");
-                    }
-                    callback();
-                });
-            } else {
-                sails.log.info("UserService :", values.length, "users already initialized.");
-                callback();
-            }
-        });
-    },
     /**
      *
      * @param {type} options (contains : email, password)
