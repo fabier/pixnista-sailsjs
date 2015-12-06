@@ -17,8 +17,8 @@ module.exports = {
      ***************************************************************************/
 
     models: {
-        connection: 'mongodb-dev',
-        migrate: 'drop'
+        connection: 'mongodb-dev'
+//        migrate: 'drop'
     },
     /***************************************************************************
      * Set the port in the development environment to 8080                     *
