@@ -4,7 +4,6 @@
  * @description :: Service for managing users
  */
 var async = require('async');
-var common = require('../common');
 
 module.exports = {
     init: function (callback) {
