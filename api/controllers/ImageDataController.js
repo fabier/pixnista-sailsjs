@@ -49,11 +49,11 @@ module.exports = {
     },
     // Il est interdit de mettre à jour les données d'une image
     update: function (req, res) {
-        res.methodNotAllowed();
+        res.forbidden();
     },
     // Il est interdit de supprimer les données d'une image
     destroy: function (req, res) {
-        res.methodNotAllowed();
+        res.forbidden();
     }
 };
 

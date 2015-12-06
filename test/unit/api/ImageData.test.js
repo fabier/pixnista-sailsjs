@@ -69,12 +69,12 @@ describe('ImageData API', function () {
 //                .field('extra_info', '{"in":"case you want to send json along with your file"}')
                 .attach('image', imageData.pathUpdate)
                 .end(function (err, res) {
-                    pixnista.handleResponseCheckStatusCode(err, res, 405, done);
+                    pixnista.handleResponseCheckStatusCode(err, res, 403, done);
                 });
     });
     it('should not be able to delete a ImageData', function (done) {
         request.delete('/imageData/' + imageData.id).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 405, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
         });
     });
     it('should still be able to get the ImageData we just tried to delete', function (done) {
