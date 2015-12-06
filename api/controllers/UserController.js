@@ -64,50 +64,24 @@ module.exports = {
      * Create a user account (Signup).
      */
     create: function (req, res) {
-
-        var Passwords = require('machinepack-passwords');
-
-        // Encrypt a string using the BCrypt algorithm.
-        Passwords.encryptPassword({
-            password: req.param('password'),
-            difficulty: 10
-        }).exec({
-            error: function (err) {
-                return res.negotiate(err);
-            },
-            success: function (encryptedPassword) {
-                require('machinepack-gravatar').getImageUrl({
-                    emailAddress: req.param('email')
-                }).exec({
-                    error: function (err) {
-                        return res.negotiate(err);
-                    },
-                    success: function (gravatarUrl) {
-                        User.create({
-                            name: req.param('name'),
-                            email: req.param('email'),
-                            encryptedPassword: encryptedPassword,
-                            lastLoggedIn: new Date(),
-                            gravatarUrl: gravatarUrl
-                        }, function (err, newUser) {
-                            if (err) {
-                                // If this is a uniqueness error about the email attribute,
-                                // send back an easily parseable status code.
-                                if (err.invalidAttributes && err.invalidAttributes.email && err.invalidAttributes.email[0]
-                                        && err.invalidAttributes.email[0].rule === 'unique') {
-                                    return res.emailAddressInUse();
-                                }
-
-                                // Otherwise, send back something reasonable as our error response.
-                                return res.negotiate(err);
-                            }
-
-                            // Log user in
-                            req.session.me = newUser.id;
-
-                            // Send back the id of the new user
-                            return res.status(201).json({id: newUser.id});
-                        });
+        UserService.create({
+            name: req.param('name'),
+            email: req.param('email'),
+            password: req.param('password')
+        }, function (err, user) {
+            if (err) {
+                res.negotiate(err);
+            } else {
+                // Log user in
+                req.session.me = user.id;
+                user.lastLoggedIn = new Date();
+                user.save(function (err, user) {
+                    if (err) {
+                        res.negotiate(err);
+                    } else {
+                        delete user.password;
+                        delete user.encryptedPassword;
+                        return res.status(201).json(user);
                     }
                 });
             }
