@@ -56,11 +56,11 @@ module.exports.connections = {
     // Chaine de connexion de production
     mongodb: {
         adapter: 'sails-mongo',
-        host: 'localhost',
-        port: 27017,
-        // user: 'username',
-        // password: 'password',
-        database: 'pixnista'
+        host: 'ds027505.mongolab.com',
+        port: 27505,
+        user: 'heroku_c24r5xn7',
+        password: '9a609daifakdpmjnmu8tibrlqs',
+        database: 'heroku_c24r5xn7'
     },
     // Chaine de connexion pour la base de données de dev
     "mongodb-dev": {
