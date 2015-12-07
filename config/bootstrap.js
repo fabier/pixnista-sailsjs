@@ -36,8 +36,7 @@ module.exports.bootstrap = function (cb) {
                     StateService.init,
                     VoteReasonService.init,
                     ImageTypeService.init,
-                    PostTypeService.init,
-                    UserService.init,
+                    PostTypeService.init
                 ], function (err) {
                     if (err) {
                         throw err;
