@@ -1,0 +1,6 @@
+<div class="row">
+    <p><%= moment(postComment.createdAt).format('MMMM Do YYYY, h:mm:ss a')%>,
+        <b><%= postComment.creator.name %></b>
+        said :</p>
+    <pre><%= postComment.comment %></pre>
+</div>
