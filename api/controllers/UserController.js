@@ -42,9 +42,8 @@ module.exports = {
                     return res.notFound();
                 },
                 success: function () {
-
-                    // Store user id in the user session
-                    req.session.user = user.id;
+                    // Store user in the user session
+                    req.session.user = user;
 
                     // Mise à jour de la date de dernière connexion de l'utilisateur
                     user.lastLoggedIn = new Date();
@@ -73,7 +72,7 @@ module.exports = {
                 res.negotiate(err);
             } else {
                 // Log user in
-                req.session.user = user.id;
+                req.session.user = user;
                 user.lastLoggedIn = new Date();
                 user.save(function (err, user) {
                     if (err) {
@@ -89,28 +88,14 @@ module.exports = {
     },
     /**
      * Log out.
-     * (wipes `user` from the sesion)
+     * (wipes `user` from the session)
      */
     logout: function (req, res) {
+        // Wipe out the session (log out)
+        req.session.user = undefined;
 
-        // Look up the user record from the database which is
-        // referenced by the id in the user session (req.session.user)
-        User.findOne(req.session.user, function foundUser(err, user) {
-            if (err)
-                return res.negotiate(err);
-
-            // If session refers to a user who no longer exists, still allow logout.
-            if (!user) {
-                sails.log.verbose('Session refers to a user who no longer exists.');
-                return res.backToHomePage();
-            }
-
-            // Wipe out the session (log out)
-            req.session.user = null;
-
-            // Either send a 200 OK or redirect to the home page
-            return res.backToHomePage();
-        });
+        // Either send a 200 OK or redirect to the home page
+        return res.backToHomePage();
     },
     update: function (req, res) {
         User.findOne({
