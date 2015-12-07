@@ -11,7 +11,7 @@ angular.module('PixnistaModule').controller('LoginController', ['$scope', '$http
             $scope.loginForm.loading = true;
 
             // Submit request to Sails.
-            $http.put('/login', {
+            $http.put('/api/login', {
                 email: $scope.loginForm.email,
                 password: $scope.loginForm.password
             }).then(function onSuccess() {

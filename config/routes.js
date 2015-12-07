@@ -43,9 +43,9 @@ module.exports.routes = {
     ////////////////////////////////////////////////////////////
     //
     // User authentication
-    'PUT /login': 'UserController.login',
-    'GET /logout': 'UserController.logout',
-    'POST /imageData': 'ImageDataController.create',
+    'PUT /api/login': 'UserController.login',
+    'GET /api/logout': 'UserController.logout',
+    'POST /api/imageData': 'ImageDataController.create',
     //
     // Liste des posts qui ont besoin d'aide
     //
