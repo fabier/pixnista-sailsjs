@@ -23,7 +23,6 @@ angular.module('HomepageModule').controller('HomepageController', ['$scope', '$h
                 // Invalid username / password combination.
                 if (sailsResponse.status === 400 || 404) {
                     // $scope.loginForm.topLevelErrorMessage = 'Invalid email/password combination.';
-                    //
                     toastr.error('Invalid email/password combination.', 'Error', {
                         closeButton: true
                     });
@@ -39,11 +38,12 @@ angular.module('HomepageModule').controller('HomepageController', ['$scope', '$h
         };
 
         $scope.help = [];
-        $http.get('/post/help/12').then(function (result) {
+        $http.get('/api/post/help/12').then(function (result) {
             var posts = result.data;
             for (var i = 0; i < posts.length; i++) {
                 $scope.help.push({
-                    url: '/image/show/' + posts[i].images[0].id
+                    url: '/post/' + posts[i].id,
+                    imageUrl: '/image/show/' + posts[i].images[0].id
                 });
             }
         }).catch(function (sailsResponse) {
@@ -54,11 +54,12 @@ angular.module('HomepageModule').controller('HomepageController', ['$scope', '$h
         });
 
         $scope.dressing = [];
-        $http.get('/post/dressing/24').then(function (result) {
+        $http.get('/api/post/dressing/24').then(function (result) {
             var posts = result.data;
             for (var i = 0; i < posts.length; i++) {
                 $scope.dressing.push({
-                    url: '/image/show/' + posts[i].images[0].id,
+                    url: '/post/' + posts[i].id,
+                    imageUrl: '/image/show/' + posts[i].images[0].id,
                     ok: !!Math.round(Math.random() * 2) // 1 chance sur 4 d'etre KO
                 });
             }
