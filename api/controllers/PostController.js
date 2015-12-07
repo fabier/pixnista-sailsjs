@@ -17,6 +17,15 @@ module.exports = {
     },
     dressing: function (req, res) {
         findPostsByPostType('dressing', req, res);
+    },
+    show: function (req, res) {
+        Post.findOne(req.param('id'), function (err, post) {
+            if (err) {
+                res.negotiate(err);
+            } else {
+                res.view('post', post);
+            }
+        });
     }
 };
 
