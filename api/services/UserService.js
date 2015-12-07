@@ -43,40 +43,31 @@ function createOneUser(options, callback) {
         },
         // OK.
         success: function (encryptedPassword) {
-            require('machinepack-gravatar').getImageUrl({
-                emailAddress: options.email
-            }).exec({
-                error: function (err) {
-                    sails.log.warn("UserService : Impossible to create a User (step generate gravatar url)", options, err)
-                    callback(err);
-                },
-                success: function (gravatarUrl) {
-                    // Create a User with the params sent from
-                    // the sign-up form --> signup.ejs
-                    User.create({
-                        name: options.name,
-                        email: options.email,
-                        encryptedPassword: encryptedPassword,
-                        gravatarUrl: gravatarUrl
-                    }, function (err, user) {
-                        if (err) {
-                            sails.log.warn("UserService : Impossible to create a User (step User.create)", options, err)
+            // Create a User with the params sent from
+            // the sign-up form --> signup.ejs
+            User.create({
+                name: options.name,
+                email: options.email,
+                encryptedPassword: encryptedPassword,
+                avatarUrl: options.avatarUrl,
+                description: options.description
+            }, function (err, user) {
+                if (err) {
+                    sails.log.warn("UserService : Impossible to create a User (step User.create)", options, err)
 
-                            // If this is a uniqueness error about the email attribute,
-                            // send back an easily parseable status code.
-                            if (err.invalidAttributes && err.invalidAttributes.email && err.invalidAttributes.email[0]
-                                    && err.invalidAttributes.email[0].rule === 'unique') {
-                                sails.log.warn("UserService : Impossible to create a User (step User.create : email already in use)", options)
-                            } else {
-                                sails.log.warn("UserService : Impossible to create a User (step User.create)", options)
-                            }
-                        }
-
-                        delete user.password;
-                        delete user.encryptedPassword;
-                        callback(err, user);
-                    });
+                    // If this is a uniqueness error about the email attribute,
+                    // send back an easily parseable status code.
+                    if (err.invalidAttributes && err.invalidAttributes.email && err.invalidAttributes.email[0]
+                            && err.invalidAttributes.email[0].rule === 'unique') {
+                        sails.log.warn("UserService : Impossible to create a User (step User.create : email already in use)", options)
+                    } else {
+                        sails.log.warn("UserService : Impossible to create a User (step User.create)", options)
+                    }
                 }
+
+                delete user.password;
+                delete user.encryptedPassword;
+                callback(err, user);
             });
         }
     });

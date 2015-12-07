@@ -22,7 +22,9 @@
                 fires.  If it's not there (which it wouldn't be in the case of ng-if) then the scope of the signup
                 controller will not be tied to this element. -->
                 <li class="li-no-style">
-                    <img class="header-useravatar" src="<%= user.gravatarUrl %>"/>
+                    <% if(user.avatarUrl){ %>
+                    <img class="header-useravatar" src="<%= user.avatarUrl %>"/>
+                    <% } %>
                     <span class="header-username"><%= user.name %></span>
                     <a href="/api/logout" class="btn btn-warning">Se déconnecter</a>
                 </li>

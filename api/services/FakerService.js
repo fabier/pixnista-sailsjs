@@ -30,7 +30,9 @@ module.exports = {
                     users.push({
                         name: faker.name.findName(),
                         password: randomId(18),
-                        email: faker.internet.email()
+                        email: faker.internet.email(),
+                        description: faker.lorem.sentences(),
+                        avatarUrl: faker.image.avatar()
                     });
                 }
                 UserService.create(users, callback);

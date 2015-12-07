@@ -31,9 +31,9 @@ module.exports = {
             type: 'string',
             required: true
         },
-        // url for gravatar
-        // ex: http://www.gravatar.com/avatar/9c73e342de67bb40c5923350acf44760
-        gravatarUrl: {
+        // url for avatar
+        // ex: https://s3.amazonaws.com/uifaces/faces/twitter/josecarlospsh/128.jpg
+        avatarUrl: {
             type: 'string'
         },
         // Dernière date de connexion de l'utilisateur
