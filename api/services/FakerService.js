@@ -41,8 +41,11 @@ module.exports = {
             visibility: function (callback) {
                 VisibilityService.public(callback);
             },
-            postType: function (callback) {
+            postTypeHelp: function (callback) {
                 PostTypeService.help(callback);
+            },
+            postTypeDressing: function (callback) {
+                PostTypeService.dressing(callback);
             },
             voteReasons: function (callback) {
                 VoteReasonService.find(callback);
@@ -53,9 +56,12 @@ module.exports = {
             }
             var imageType = results.imageType;
             var visibility = results.visibility;
-            var postType = results.postType;
+            var postTypeHelp = results.postTypeHelp;
+            sails.log.info("postTypeHelp = " + postTypeHelp);
+            var postTypeDressing = results.postTypeDressing;
+            sails.log.info("postTypeDressing = " + postTypeDressing);
             var voteReasons = results.voteReasons;
-            var posts = [];
+            var allPosts = [], helpPosts = [], dressingPosts = [];
             var comments = [];
             var votes = [];
             sails.log.info("FakerService - " + users.length + " Users created");
@@ -69,36 +75,48 @@ module.exports = {
             sails.log.info("FakerService - Posts being created for all users... please wait...");
             async.each(results.users, function (user, callback) {
                 async.waterfall([
-                    // Création de données image
+                    // Création de données image (need help)
                     function (callback) {
                         createRandomImages(user, imageType, callback);
                     },
                     // Création de posts associés à ces images
                     function (images, callback) {
-                        createPostsFromImages(images, user, visibility, postType, callback);
+                        createPostsFromImages(images, user, visibility, postTypeHelp, callback);
+                    },
+                    // Création de données image (dressing)
+                    function (posts, callback) {
+                        Array.prototype.push.apply(helpPosts, posts);
+                        createRandomImages(user, imageType, callback);
+                    },
+                    // Création de posts associés à ces images
+                    function (images, callback) {
+                        createPostsFromImages(images, user, visibility, postTypeDressing, callback);
                     }
-                ], function (err, results) {
+                ], function (err, posts) {
                     if (err) {
                         throw err;
                     }
-                    Array.prototype.push.apply(posts, results);
+                    Array.prototype.push.apply(dressingPosts, posts);
+                    Array.prototype.push.apply(allPosts, dressingPosts);
+                    Array.prototype.push.apply(allPosts, helpPosts);
                     callback();
                 });
             }, function (err) {
                 if (err) {
                     throw err;
                 }
-                sails.log.info("FakerService - " + posts.length + " Posts created for all users");
+                sails.log.info("FakerService - " + helpPosts.length + " Help Posts created for all users");
+                sails.log.info("FakerService - " + dressingPosts.length + " Dressing Posts created for all users");
                 sails.log.info("FakerService - Comments and votes being created for all users... please wait...");
                 async.each(results.users, function (user, callback) {
                     async.parallel({
                         // Ajout de votes aux posts créés
                         votes: function (callback) {
-                            createPostVotesToPosts(posts, user, voteReasons, callback);
+                            createPostVotesToPosts(allPosts, user, voteReasons, callback);
                         },
                         // Création de commentaires sur les posts existants
                         comments: function (callback) {
-                            createPostCommentsToPosts(posts, user, callback);
+                            createPostCommentsToPosts(allPosts, user, callback);
                         }
                     }, function (err, results) {
                         if (err) {
