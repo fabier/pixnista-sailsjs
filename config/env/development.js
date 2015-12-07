@@ -11,6 +11,17 @@
  */
 
 module.exports = {
+    connections: {
+        // Chaine de connexion pour la base de données de dev
+        "mongodb-dev": {
+            adapter: 'sails-mongo',
+            host: 'localhost',
+            port: 27017,
+            // user: 'username',
+            // password: 'password',
+            database: 'pixnista-dev'
+        }
+    },
     /***************************************************************************
      * Set the default database connection for models in the development       *
      * environment (see config/connections.js and config/models.js )           *

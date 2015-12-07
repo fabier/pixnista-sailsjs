@@ -11,6 +11,17 @@
  */
 
 module.exports = {
+    connections: {
+        // Chaine de connexion de production
+        mongodb: {
+            adapter: 'sails-mongo',
+            host: 'ds027505.mongolab.com',
+            port: 27505,
+            user: 'heroku_c24r5xn7',
+            password: '9a609daifakdpmjnmu8tibrlqs',
+            database: 'heroku_c24r5xn7'
+        }
+    },
     /***************************************************************************
      * Set the default database connection for models in the production        *
      * environment (see config/connections.js and config/models.js )           *
