@@ -1,4 +1,4 @@
-angular.module('DashboardModule').controller('DashboardController', ['$scope', '$http', 'toastr', function ($scope, $http, toastr) {
+angular.module('PixnistaModule').controller('DashboardController', ['$scope', '$http', 'toastr', function ($scope, $http, toastr) {
 
         $scope.help = [];
         $http.get('/api/post/help/12').then(function (result) {
