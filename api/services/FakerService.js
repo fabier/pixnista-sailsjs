@@ -162,14 +162,8 @@ function createRandomImages(user, imageType, callback) {
         downloadAsBuffer(imageData.url, function (err, res, body) {
             imageData.data = body;
             sails.log.verbose("FakerService - Data fetched");
-            callback();
-        });
-    }, function (err) {
-        if (err) {
-            throw err;
-        }
-        async.each(imageDatas, function (imageData, callback) {
-            ImageData.create(imageData, function (err, imageData) {
+            ImageData.create(imageData, function (err, imageDataCreated) {
+                imageData.id = imageDataCreated.id;
                 sails.log.verbose("FakerService - ImageData created");
                 Image.create({
                     name: imageData.filename,
@@ -183,13 +177,14 @@ function createRandomImages(user, imageType, callback) {
                     callback();
                 });
             });
-        }, function (err) {
-            if (err) {
-                throw err;
-            }
-            sails.log.verbose("FakerService - Images created", images);
-            callback(null, images);
+            callback();
         });
+    }, function (err) {
+        if (err) {
+            throw err;
+        }
+        sails.log.verbose("FakerService - Images created", images);
+        callback(null, images);
     });
 }
 
