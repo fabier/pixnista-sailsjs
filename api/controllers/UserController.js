@@ -44,7 +44,7 @@ module.exports = {
                 success: function () {
 
                     // Store user id in the user session
-                    req.session.me = user.id;
+                    req.session.user = user.id;
 
                     // Mise à jour de la date de dernière connexion de l'utilisateur
                     user.lastLoggedIn = new Date();
@@ -73,7 +73,7 @@ module.exports = {
                 res.negotiate(err);
             } else {
                 // Log user in
-                req.session.me = user.id;
+                req.session.user = user.id;
                 user.lastLoggedIn = new Date();
                 user.save(function (err, user) {
                     if (err) {
@@ -89,13 +89,13 @@ module.exports = {
     },
     /**
      * Log out.
-     * (wipes `me` from the sesion)
+     * (wipes `user` from the sesion)
      */
     logout: function (req, res) {
 
         // Look up the user record from the database which is
-        // referenced by the id in the user session (req.session.me)
-        User.findOne(req.session.me, function foundUser(err, user) {
+        // referenced by the id in the user session (req.session.user)
+        User.findOne(req.session.user, function foundUser(err, user) {
             if (err)
                 return res.negotiate(err);
 
@@ -106,7 +106,7 @@ module.exports = {
             }
 
             // Wipe out the session (log out)
-            req.session.me = null;
+            req.session.user = null;
 
             // Either send a 200 OK or redirect to the home page
             return res.backToHomePage();
