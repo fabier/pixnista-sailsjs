@@ -33,7 +33,6 @@ module.exports = {
                     } else {
                         var creators = _.pluck(post.postComments, 'creator');
                         creators = _.uniq(creators);
-                        sails.log.info(creators);
                         User.find({id: {$in: creators}}, function (err, creators) {
                             if (err) {
                                 res.negotiate(err);
