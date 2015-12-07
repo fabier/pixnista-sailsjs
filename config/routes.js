@@ -47,6 +47,10 @@ module.exports.routes = {
     'GET /logout': 'UserController.logout',
     'POST /imageData': 'ImageDataController.create',
     //
+    // Liste des posts qui ont besoin d'aide
+    //
+    'GET /api/post/help/:limit': 'PostController.help',
+    'GET /api/post/dressing/:limit': 'PostController.dressing',
     ////////////////////////////////////////////////////////////
     //
 
@@ -60,8 +64,6 @@ module.exports.routes = {
      *                                                                          *
      ***************************************************************************/
 
-    // Liste des posts qui ont besoin d'aide
-    'GET /post/help/:limit': 'PostController.help',
-    'GET /post/dressing/:limit': 'PostController.dressing',
-    'GET /image/show': 'ImageController.show'
+    'GET /image/show': 'ImageController.show',
+    'GET /post/:id': 'PostController.show'
 };

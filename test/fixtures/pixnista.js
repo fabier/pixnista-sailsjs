@@ -6,9 +6,10 @@ var request = require('supertest');
 var faker = require('faker');
 var randomId = require('random-id');
 var _ = require('underscore');
+
 function baseURL() {
-    // Base URL pour les tests
-    return 'http://localhost:8080';
+    // Base URL pour les tests de l'API REST
+    return 'http://localhost:8080/api';
 }
 
 module.exports = {
