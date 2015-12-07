@@ -177,7 +177,6 @@ function createRandomImages(user, imageType, callback) {
                     callback();
                 });
             });
-            callback();
         });
     }, function (err) {
         if (err) {
