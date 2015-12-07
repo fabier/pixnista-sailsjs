@@ -48,7 +48,8 @@ module.exports.bootstrap = function (cb) {
                     // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
                     cb();
 
-                    if (sails.config.environment === 'development') {
+                    if (sails.config.environment === 'development'
+                            || sails.config.environment === 'production') {
                         setTimeout(function () {
                             FakerService.init(function () {});
                         }, 1000);
