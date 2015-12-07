@@ -5,6 +5,9 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var moment = require('moment');
+var _ = require('underscore');
+
 module.exports = {
     /**
      * Il est interdit de lister les posts depuis l'API Rest
@@ -19,13 +22,35 @@ module.exports = {
         findPostsByPostType('dressing', req, res);
     },
     show: function (req, res) {
-        Post.findOne(req.param('id'), function (err, post) {
-            if (err) {
-                res.negotiate(err);
-            } else {
-                res.view('post', post);
-            }
-        });
+        Post.findOne(req.param('id'))
+                .populate("creator")
+                .populate("postComments")
+                .populate("images")
+                .populate("postVotes")
+                .exec(function (err, post) {
+                    if (err) {
+                        res.negotiate(err);
+                    } else {
+                        var creators = _.pluck(post.postComments, 'creator');
+                        creators = _.uniq(creators);
+                        sails.log.info(creators);
+                        User.find({id: {$in: creators}}, function (err, creators) {
+                            if (err) {
+                                res.negotiate(err);
+                            } else {
+                                creators = _.indexBy(creators, 'id');
+                                post.postComments = _.map(post.postComments, function (postComment) {
+                                    postComment.creator = creators[postComment.creator];
+                                    return postComment;
+                                });
+                                res.view('post', {
+                                    post: post,
+                                    moment: moment
+                                });
+                            }
+                        });
+                    }
+                });
     }
 };
 
