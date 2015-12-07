@@ -1,70 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Pixnista | Welcome back, <%= user.name %>!</title>
-        <!-- Viewport mobile tag for sensible mobile support -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <!--STYLES-->
-        <link rel="stylesheet" href="/styles/angular-toastr.css">
-        <link rel="stylesheet" href="/styles/bootstrap.3.1.1.css">
-        <link rel="stylesheet" href="/styles/importer.css">
-        <!--STYLES END-->
-        <!--Added this so the client has access to the csrf tag and it's grabbed first service side on every page -->
-        <script type="text/javascript">
-            window.SAILS_LOCALS = {
-                _csrf: '<%= _csrf %>',
-                user: '<%- JSON.stringify(user) %>'
-            };
-        </script>
-    </head>
-    <body ng-app="DashboardModule" ng-controller="DashboardController" ng-cloak>
+<% title = 'Pixnista'%>
+<div class="container" ng-controller="DashboardController" ng-cloak>
+    <div class="jumbotron">
+        <h1>Bienvenue chez vous !</h1>
+        <h2>C'est ici qu'on pourra retrouver les photos qu'on a postées, les amis, etc.</h2>
+    </div>
 
-        <!-- container = Fixed-width container container-fluid = full-width -->
-
-
-        <div class="container">
-            <div class="jumbotron">
-                <h1>Bienvenue chez vous !</h1>
-                <h2>C'est ici qu'on pourra retrouver les photos qu'on a postées, les amis, etc.</h2>
-            </div>
-
-            <div class="row">
-                <h1>Ils ont besoin de votre aide
-                    <a class="btn btn-success pull-right">Poster une photo</a>
-                </h1>
-                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in help">
-                    <a href="{{post.url}}">
-                        <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <h1>Ils ont recu votre aide, merci à vous !</h1>
-                <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in dressing">
-                    <div class="image-thumb-wrapper">
-                        <a href="{{post.url}}">
-                            <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
-                            <i class="glyphicon glyphicon-ok-sign {{post.ok ? 'ok' : 'ko'}}"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+    <div class="row">
+        <h1>Ils ont besoin de votre aide
+            <a class="btn btn-success pull-right">Poster une photo</a>
+        </h1>
+        <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in help">
+            <a href="{{post.url}}">
+                <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
+            </a>
         </div>
-        <!--SCRIPTS-->
-        <script src="/js/dependencies/sails.io.js"></script>
-        <script src="/js/dependencies/angular.1.3.js"></script>
-        <script src="/js/dependencies/angular-toastr.js"></script>
-        <script src="/js/dependencies/compareTo.module.js"></script>
-        <script src="/js/public/signup/SignupModule.js"></script>
-        <script src="/js/private/dashboard/DashboardModule.js"></script>
-        <script src="/js/public/homepage/HomepageModule.js"></script>
-        <script src="/js/private/dashboard/DashboardController.js"></script>
-        <script src="/js/public/homepage/HomepageController.js"></script>
-        <script src="/js/public/signup/SignupController.js"></script>
-        <!--SCRIPTS END-->
+    </div>
 
-    </body>
-</html>
+
+    <div class="row">
+        <h1>Ils ont recu votre aide, merci à vous !</h1>
+        <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in dressing">
+            <div class="image-thumb-wrapper">
+                <a href="{{post.url}}">
+                    <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
+                    <i class="glyphicon glyphicon-ok-sign {{post.ok ? 'ok' : 'ko'}}"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

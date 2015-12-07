@@ -1,48 +1,33 @@
-<body ng-app="HomepageModule" ng-controller="HomepageController" ng-cloak>
-    <div class="container">
-        <div class="row">
-            <div class="jumbotron">
-                <h1>Pixnista</h1>
-                <h2>The tiny fitting room inside your phone !</h2>
-                <a href="/signup" class="btn btn-lg btn-success">Sign up now!</a>
-            </div>
-        </div>
-
-        <div class="row">
-            <h1>Ils ont besoin de votre aide
-                <a class="btn btn-success pull-right">Poster une photo</a>
-            </h1>
-            <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in help">
-                <a href="{{post.url}}">
-                    <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
-                </a>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <h1>Ils ont recu votre aide, merci à vous !</h1>
-            <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in dressing">
-                <div class="image-thumb-wrapper">
-                    <a href="{{post.url}}">
-                        <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
-                        <i class="glyphicon glyphicon-ok-sign {{post.ok ? 'ok' : 'ko'}}"></i>
-                    </a>
-                </div>
-            </div>
+<% title = 'Pixnista'%>
+<div class="container" ng-controller="HomepageController" ng-cloak>
+    <div class="row">
+        <div class="jumbotron">
+            <h1>Pixnista</h1>
+            <h2>The tiny fitting room inside your phone !</h2>
+            <a href="/signup" class="btn btn-lg btn-success">Sign up now!</a>
         </div>
     </div>
 
-    <!--SCRIPTS-->
-    <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/js/dependencies/angular.1.3.js"></script>
-    <script src="/js/dependencies/angular-toastr.js"></script>
-    <script src="/js/dependencies/compareTo.module.js"></script>
-    <script src="/js/public/signup/SignupModule.js"></script>
-    <script src="/js/private/dashboard/DashboardModule.js"></script>
-    <script src="/js/public/homepage/HomepageModule.js"></script>
-    <script src="/js/private/dashboard/DashboardController.js"></script>
-    <script src="/js/public/homepage/HomepageController.js"></script>
-    <script src="/js/public/signup/SignupController.js"></script>
-    <!--SCRIPTS END-->
-</body>
+    <div class="row">
+        <h1>Ils ont besoin de votre aide
+            <a class="btn btn-success pull-right">Poster une photo</a>
+        </h1>
+        <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in help">
+            <a href="{{post.url}}">
+                <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>Ils ont recu votre aide, merci à vous !</h1>
+        <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in dressing">
+            <div class="image-thumb-wrapper">
+                <a href="{{post.url}}">
+                    <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
+                    <i class="glyphicon glyphicon-ok-sign {{post.ok ? 'ok' : 'ko'}}"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
