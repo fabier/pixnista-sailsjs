@@ -1,29 +1,50 @@
 <%title=post.title%>
 <div class="container" ng-controller="PostController" ng-cloak>
     <div class="row">
-        <div class="col-md-2">
-            <img src="/image/show/<%=post.images[0].id%>"/>
-        </div>
-        <div class="col-md-8">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <%=post.title%>
-                    <br/>
-                    <small>
-                        <%=post.creator.name%> at <%= moment(post.createdAt).calendar() %>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/image/show/<%=post.images[0].id%>" style="width:100%;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <small class="text-muted">
+                        <%=post.creator.name%> <%= moment(post.createdAt).calendar() %>
                     </small>
                 </div>
-                <div class="panel-content">
-                    <%=post.content%>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="<%=post.creator.avatarUrl%>" class="float-left margin-5"/>
+                    <h4>
+                        <%=post.creator.name%>
+                        <br/>
+                        <small>
+                            <%=post.creator.description%>
+                        </small>
+                    </h4>
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <img src="<%=post.creator.gravatarUrl%>"/>
+        <div class="col-md-8">
+            <h2>
+                <%=post.title%>
+                <br/>
+                <small>
+                    <%=post.content%>
+                </small>
+            </h2>
+            <h3>Commentaires</h3>
+            <% var postComments = _.sortBy(post.postComments, 'createdAt').reverse(); %>
+            <% postComments = _.first(postComments, 5); %>
+            <%if(postComments.length === 0){%>
+            <p>Pas de commentaitres pour cette demande d'aide.</p>
+            <%}else{%>
+            <% postComments.forEach(function(postComment){ %>
+            <% include postComment %>
+            <% }) %>
+            <%}%>
         </div>
     </div>
-    <% var postComments = _.sortBy(post.postComments, 'createdAt'); %>
-    <% postComments.forEach(function(postComment){ %>
-    <% include postComment %>
-    <% }) %>
 </div>
