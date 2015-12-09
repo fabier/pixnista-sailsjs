@@ -9,9 +9,9 @@ module.exports = {
             if (values.length === 0) {
                 sails.log.info("ImageTypeService : no imageTypes found, initializing...");
                 ImageTypeService.create([
-                    {name: "JPEG", extensions: ["jpg", 'jpeg']},
-                    {name: "PNG", extensions: ["png"]},
-                    {name: "GIF", extensions: ["gif"]}
+                    {name: "JPEG", extensions: ["jpg", 'jpeg'], mimetypes: ['image/jpeg']},
+                    {name: "PNG", extensions: ["png"], mimetypes: ['image/png']},
+                    {name: "GIF", extensions: ["gif"], mimetypes: ['image/gif']}
                 ], function (err, imageTypes) {
                     if (err) {
                         sails.log.warn("ImageTypeService : error initializing imageTypes !");
