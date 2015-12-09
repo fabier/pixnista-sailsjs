@@ -24,6 +24,11 @@ module.exports = {
         extensions: {
             type: 'array'
         },
+        // Types MIME possibles du type d'image
+        // ex: ['image/jpg', 'image/jpeg']
+        mimetypes: {
+            type: 'array'
+        },
         // ============
         // Associations
         // ============
