@@ -130,5 +130,16 @@ module.exports = {
                     );
                 }});
         });
+    },
+    show: function (req, res) {
+        User.findOne(req.param("id"), function (err, user) {
+            if (err) {
+                return res.negotiate(err);
+            } else if (user) {
+                res.view("user/show", user);
+            } else {
+                res.notFound();
+            }
+        });
     }
 };
