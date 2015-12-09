@@ -1,0 +1,50 @@
+<% title = 'Login'; %>
+<% loginFormVisible = false; %>
+<body ng-controller="LoginController" ng-cloak>
+    <div class="container">
+        <div class="row">
+            <!-- Login FORM -->
+            <form id="login-form" ng-submit="submitLoginForm()" class="form-horizontal">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2 class="form-signin-heading">Login</h2>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10" ng-class="{'has-error':signin.email.$invalid && signin.email.$dirty}">
+                            <input type="email" class="form-control" id="email" name="email"
+                                   ng-model="loginForm.email"
+                                   placeholder="<%=faker.internet.email()%>" required>
+                            <span class="help-block has-error" ng-if="signin.email.$dirty">
+                                <span ng-show="signin.email.$error.required">Email address is required.</span>
+                                <span ng-show="signin.email.$error.email">Not a valid email address.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   ng-model="loginForm.password"
+                                   placeholder="<%=faker.internet.password()%>">
+                            <span class="help-block has-error" ng-if="signin.password.$dirty">
+                                <span ng-show="signin.password.$error.required">Password is required.</span>
+                                <span ng-show="signin.password.$error.minlength">Password must be at least 6 characters.</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                <span ng-show="!loginForm.loading">Sign in</span>
+                                <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+                                <span ng-show="loginForm.loading">Signing in...</span>
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
