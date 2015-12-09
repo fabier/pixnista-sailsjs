@@ -28,13 +28,12 @@
                     <span class="header-username"><%= user.name %></span>
                     <a href="/api/logout" class="btn btn-warning">Se déconnecter</a>
                 </li>
-                <!-- <a ng-controller="signinController" class="btn btn-default navbar-btn navbar-right" href="#" ng-if="!isAuthenticated">sign-in</a> -->
                 <!-- Using ng-show instead of ng-if because we need this mark-up to be in the dom when signup controller
                 fires.  If it's not there (which it wouldn't be in the case of ng-if) then the scope of the signup
                 controller will not be tied to this element. -->
             </ul>
         </div>
-        <% } else { %>
+        <% } else if(typeof loginFormVisible === 'undefined' || loginFormVisible === true) { %>
         <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
             <form ng-submit="submitLoginForm()" class="navbar-form navbar-right">
 
