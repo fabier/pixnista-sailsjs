@@ -29,8 +29,7 @@
                     <div class="row">
                         <!-- E M A I L -->
                         <div class="control-group form-group col-md-12"
-                             ng-class="{'has-error':signup.email.$invalid &&
-                                                 signup.email.$dirty}">
+                             ng-class="{'has-error':signup.email.$invalid && signup.email.$dirty}">
                             <label>Your email address</label>
                             <input type="email" class="form-control" placeholder="nikola@tesla.com" name="email" ng-model="signupForm.email" required >
                             <span class="help-block has-error" ng-if="signup.email.$dirty">
@@ -43,12 +42,11 @@
                     <div class="row">
                         <!-- P A S S W O R D -->
                         <div class="control-group form-group col-md-6"
-                             ng-class="{'has-error':signup.password.$invalid &&
-                                                 signup.password.$dirty}">
+                             ng-class="{'has-error':signup.password.$invalid && signup.password.$dirty}">
                             <label>Choose a password</label>
                             <!-- Added the compareTo directive that compares the passowrds -->
-                            <input type="password" class="form-control" placeholder="at least 6 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="6" compare-to="signupForm.confirmPassword" >
-                            <span class="help-block has-error" ng-if="signup.password.$dirty">
+                            <input type="password" class="form-control" placeholder="at least 6 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="6"  >
+                            <span class="help-block has-error" ng-show="signup.password.$dirty">
                                 <span ng-show="signup.password.$error.required">Password is required.</span>
                                 <span ng-show="signup.password.$error.minlength">Password must be at least 6 characters.</span>
                             </span>
@@ -58,10 +56,10 @@
 
                         <div class="control-group form-group col-md-6">
                             <label>Re-enter your password</label>
-                            <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="signupForm.confirmPassword" required>
-                            <span class="help-block has-error" ng-if="signup.confirmation.$dirty">
-                                <span ng-show="signup.password.$error.compareTo">Password must match.</span>
-                                <span ng-show="signup.confirmation.$error.required">Confirmation password is required.</span>
+                            <input type="password" class="form-control" placeholder="one more time" name="confirmPassword" ng-model="signupForm.confirmPassword" compare-to="signupForm.password" required>
+                            <span class="help-block has-error" ng-show="signup.confirmPassword.$dirty && signup.confirmPassword.$error.errorCompareTo">
+                                <span ng-show="signup.confirmPassword.$error.errorCompareTo">Password must match.</span>
+                                <span ng-show="signup.confirmPassword.$error.required">Confirmation password is required.</span>
                             </span>
                         </div>
 
