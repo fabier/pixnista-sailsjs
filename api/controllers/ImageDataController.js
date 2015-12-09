@@ -9,13 +9,16 @@ var md5 = require('md5');
 var async = require('async');
 var fs = require('fs');
 module.exports = {
+    /**
+     * Fonction de création d'une image pour l'API
+     */
     create: function (req, res) {
         req.file('image').upload(function (err, files) {
             if (err) {
                 return res.negotiate(err);
             }
 
-            async.map(files, saveFile, function (err, imageDatas) {
+            async.map(files, ImageDataService.saveFile, function (err, imageDatas) {
                 if (err) {
                     res.negotiate(err);
                 } else {
@@ -29,11 +32,11 @@ module.exports = {
             });
         });
     },
-    // Il est interdit de lister l'ensemble des images
+    // Il est interdit de lister l'ensemble des imageDatas
     find: function (req, res) {
         res.forbidden();
     },
-    // Fonction d'affichage d'une image
+    // Fonction d'affichage d'une imageData
     findOne: function (req, res) {
         ImageData.findOne(req.param('id'), function (err, imageData) {
             if (err) {
@@ -57,27 +60,4 @@ module.exports = {
     }
 };
 
-
-function saveFile(file, callback) {
-    fs.readFile(file.fd, function (err, data) {
-        if (err) {
-            throw err;
-        }
-        ImageData.create({
-            data: data,
-            md5: md5(data),
-            type: file.type, // 'image/jpeg'
-            filename: file.filename // 'DSC_O892.JPG'
-        }, function (err, imageData) {
-            if (err) {
-                callback(err);
-            } else {
-                // Ce n'est pas important si la suppression ne fonctionne pas
-                // donc on ne met pas de callback à l'appel de la fonction
-                fs.unlink(file.fd); // Suppression du fichier temporaire
-                callback(null, imageData);
-            }
-        });
-    });
-}
 
