@@ -150,7 +150,7 @@ function createRandomImages(user, imageType, callback) {
     var imagesCountToCreate = Math.floor(Math.random() * maxPostsPerUser);
     for (var i = 0; i < imagesCountToCreate; i++) {
         imageDatas.push({
-            url: 'http://loremflickr.com/128/128/selfie,fashion',
+            url: url,
             creator: user.id,
             data: null,
             md5: null,
@@ -160,23 +160,36 @@ function createRandomImages(user, imageType, callback) {
     }
     async.each(imageDatas, function (imageData, callback) {
         downloadAsBuffer(imageData.url, function (err, res, body) {
-            imageData.data = body;
-            sails.log.verbose("FakerService - Data fetched");
-            ImageData.create(imageData, function (err, imageDataCreated) {
-                imageData.id = imageDataCreated.id;
-                sails.log.verbose("FakerService - ImageData created");
-                Image.create({
-                    name: imageData.filename,
-                    filename: imageData.filename,
-                    description: faker.lorem.sentence(),
-                    creator: user.id,
-                    imageData: imageData.id,
-                    imageType: imageType.id
-                }, function (err, image) {
-                    images.push(image);
-                    callback();
+            if (err) {
+                // On n'a pas réussi à télécharger le contenu de l'image
+                // On laisse tomber sans émettre d'erreur,
+                // car émettre une erreur reviendrait à arrêter tout le process
+                sails.log.warning("FakerService - Impossible to download url :", imageData.url);
+                callback();
+            } else {
+                imageData.data = body;
+                sails.log.verbose("FakerService - Data fetched");
+                ImageData.create(imageData, function (err, imageDataCreated) {
+                    if (err) {
+                        throw err;
+                    } else {
+                        sails.log.verbose("imageDataCreated", imageDataCreated);
+                        imageData.id = imageDataCreated.id;
+                        sails.log.verbose("FakerService - ImageData created");
+                        Image.create({
+                            name: imageData.filename,
+                            filename: imageData.filename,
+                            description: faker.lorem.sentence(),
+                            creator: user.id,
+                            imageData: imageData.id,
+                            imageType: imageType.id
+                        }, function (err, image) {
+                            images.push(image);
+                            callback();
+                        });
+                    }
                 });
-            });
+            }
         });
     }, function (err) {
         if (err) {
