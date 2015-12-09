@@ -32,6 +32,60 @@ module.exports = {
                 }
             }
         });
-    }
+    },
+    // Pour l'upload de nouvelles images
+    upload: function (req, res) {
+        req.file('file').upload(function (err, files) {
+            if (err) {
+                return res.negotiate(err);
+            }
+
+            async.map(files, ImageDataService.saveFile, function (err, imageDatas) {
+                if (err) {
+                    res.negotiate(err);
+                } else {
+                    // Suppression de la donnée dans le retour de l'appel
+                    // (pour éviter des flux trop importants)
+                    imageDatas.forEach(function (e) {
+                        delete e.data;
+                    });
+                    var images = [];
+                    async.each(imageDatas, function (imageData, callback) {
+                        ImageType.find({
+                            'mimetypes': {
+                                contains: imageData.type
+                            }
+                        }, function (err, imageTypes) {
+                            if (err) {
+                                res.negotiate(err);
+                            } else if (imageTypes.length === 1) {
+                                var imageType = imageTypes[0];
+                                Image.create({
+                                    name: imageData.filename,
+                                    filename: imageData.filename,
+                                    creator: req.session.user.id,
+                                    imageData: imageData.id,
+                                    imageType: imageType.id
+                                }, function (err, image) {
+                                    images.push(image);
+                                    callback(err, image);
+                                });
+                            } else {
+                                res.serverError("Found none or multiple imageTypes for MIME Type :", imageData.type)
+                            }
+                        });
+                    }, function (err, result) {
+                        if (err) {
+                            res.negotiate(err);
+                        } else {
+                            return res.json({
+                                images: images
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    },
 };
 
