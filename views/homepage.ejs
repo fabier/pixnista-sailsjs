@@ -4,16 +4,18 @@
         <div class="jumbotron">
             <h1>Pixnista</h1>
             <h2>The tiny fitting room inside your phone !</h2>
-            <a href="/signup" class="btn btn-lg btn-success">Sign up now!</a>
+            <a href="/auth/signup" class="btn btn-lg btn-success">Sign up now!</a>
         </div>
     </div>
 
     <div class="row">
         <h1>Ils ont besoin de votre aide
-            <a class="btn btn-success pull-right">Poster une photo</a>
+            <a class="btn btn-success pull-right" href="/post/new">
+                Poster une photo
+            </a>
         </h1>
         <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in help">
-            <a href="{{post.url}}">
+            <a href="/post/{{post.id}}">
                 <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
             </a>
         </div>
@@ -23,7 +25,7 @@
         <h1>Ils ont recu votre aide, merci à vous !</h1>
         <div class="col-md-1 col-xs-2 padding-1" ng-repeat="post in dressing">
             <div class="image-thumb-wrapper">
-                <a href="{{post.url}}">
+                <a href="/post/{{post.id}}">
                     <img class="media-object image-thumb" src="{{post.imageUrl}}" alt="...">
                     <i class="glyphicon glyphicon-ok-sign {{post.ok ? 'ok' : 'ko'}}"></i>
                 </a>

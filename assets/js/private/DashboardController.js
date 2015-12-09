@@ -5,7 +5,7 @@ angular.module('PixnistaModule').controller('DashboardController', ['$scope', '$
             var posts = result.data;
             for (var i = 0; i < posts.length; i++) {
                 $scope.help.push({
-                    url: '/post/' + posts[i].id,
+                    id: posts[i].id,
                     imageUrl: '/image/show/' + posts[i].images[0].id
                 });
             }
@@ -21,7 +21,7 @@ angular.module('PixnistaModule').controller('DashboardController', ['$scope', '$
             var posts = result.data;
             for (var i = 0; i < posts.length; i++) {
                 $scope.dressing.push({
-                    url: '/post/' + posts[i].id,
+                    id: posts[i].id,
                     imageUrl: '/image/show/' + posts[i].images[0].id,
                     ok: !!Math.round(Math.random() * 2) // 1 chance sur 4 d'etre KO
                 });
