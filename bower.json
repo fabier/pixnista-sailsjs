@@ -1,0 +1,20 @@
+{
+  "name": "pixnista-sails",
+  "description": "The tiny fitting box",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fabier/pixnista-sailsjs",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-mocks": "1.4.x",
+    "jquery": "~2.1.1",
+    "angular-route": "1.4.x",
+    "angular-resource": "1.4.x",
+    "angular-animate": "1.4.x",
+    "bootstrap": "3.3.6",
+    "angular-toastr": "~1.6.0",
+    "dropzone": "~4.2.0",
+    "angularjs-compare-to-directive": "*"
+  }
+}
