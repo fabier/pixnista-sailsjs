@@ -1,10 +1,11 @@
 <div class="row">
-    <small>
-        <b><%= postComment.creator.name %></b>,
-        <%= moment(postComment.createdAt).calendar()%>
-        :
-    </small>
-    <blockquote>
-        <p><%= postComment.comment %></p>
-    </blockquote>
+    <%if(postComment.creator.avatarUrl){%>
+    <img class="comment-creator-avatar" src="<%=postComment.creator.avatarUrl%>"/>
+    <%} else {%>
+    <img class="comment-creator-avatar" src="/images/user-avatar.png"/>
+    <%}%>
+    <span class="comment-creator-name"><%= postComment.creator.name %></span>,
+    <span class="comment-date"><%= moment(postComment.createdAt).calendar()%></span>
+    <br/>
+    <p class="comment-content"><%= postComment.comment %></p>
 </div>
