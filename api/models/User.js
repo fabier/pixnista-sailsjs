@@ -3,10 +3,11 @@
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/#!documentation/models
+ * @docs        :: http://waterlock.ninja/documentation
  */
 
 module.exports = {
-    attributes: {
+    attributes: require('waterlock').models.user.attributes({
         // Nom complet et affichable de l'utilisateur
         // ex: John Doe
         name: {
@@ -145,6 +146,8 @@ module.exports = {
             collection: 'PostComment',
             via: 'creator'
         }
-    }
+    }),
     // Lifecycle Callbacks
+    beforeCreate: require('waterlock').models.user.beforeCreate,
+    beforeUpdate: require('waterlock').models.user.beforeUpdate
 };

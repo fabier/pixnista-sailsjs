@@ -35,6 +35,16 @@ module.exports = {
      * Set the port in the development environment to 8080                     *
      ***************************************************************************/
 
-    port: 8080
+    port: 8080,
+    /***************************************************************************
+     * Set the log level in production environment to "silent"                 *
+     ***************************************************************************/
 
+    // log: {
+    //   level: "silent"
+    // }
+
+    waterlock: {
+        baseUrl: 'http://localhost:8000'
+    }
 };

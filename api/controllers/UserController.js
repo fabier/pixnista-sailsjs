@@ -2,10 +2,11 @@
  * UserController
  *
  * @description :: Server-side logic for managing users
- * @help        :: See http://links.sailsjs.org/docs/controllers
+ * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ * @docs        :: http://waterlock.ninja/documentation
  */
 
-module.exports = {
+module.exports = require('waterlock').actions.user({
     /**
      * Il est interdit de lister les utilisateurs depuis l'API Rest
      */
@@ -142,4 +143,4 @@ module.exports = {
             }
         });
     }
-};
+});
