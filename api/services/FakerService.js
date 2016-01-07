@@ -66,16 +66,17 @@ module.exports = {
             var allPosts = [], helpPosts = [], dressingPosts = [];
             var comments = [];
             var votes = [];
+            var users = results.users;
             sails.log.info("FakerService - " + users.length + " Users created");
-            sails.log.info(users);
+            // sails.log.info(users);
             // Affichage de login et password pour test
-//            sails.log.info(_.pluck(users, ["email", "password"]));
+            // sails.log.info(_.pluck(users, ["email", "password"]));
 
             // Pour chaque utilisateur créé,
             // on crée un jeu de données comprenant des posts avec
             // un titre, un commentaire et une image à chaque fois
             sails.log.info("FakerService - Posts being created for all users... please wait...");
-            async.each(results.users, function (user, callback) {
+            async.each(users, function (user, callback) {
                 async.waterfall([
                     // Création de données image (need help)
                     function (callback) {
@@ -88,6 +89,7 @@ module.exports = {
                     // Création de données image (dressing)
                     function (posts, callback) {
                         Array.prototype.push.apply(helpPosts, posts);
+                        Array.prototype.push.apply(allPosts, posts);
                         createRandomImages(user, imageType, callback);
                     },
                     // Création de posts associés à ces images
@@ -99,8 +101,7 @@ module.exports = {
                         throw err;
                     }
                     Array.prototype.push.apply(dressingPosts, posts);
-                    Array.prototype.push.apply(allPosts, dressingPosts);
-                    Array.prototype.push.apply(allPosts, helpPosts);
+                    Array.prototype.push.apply(allPosts, posts);
                     callback();
                 });
             }, function (err) {
@@ -110,15 +111,15 @@ module.exports = {
                 sails.log.info("FakerService - " + helpPosts.length + " Help Posts created for all users");
                 sails.log.info("FakerService - " + dressingPosts.length + " Dressing Posts created for all users");
                 sails.log.info("FakerService - Comments and votes being created for all users... please wait...");
-                async.each(results.users, function (user, callback) {
+                async.each(allPosts, function (post, callback) {
                     async.parallel({
-                        // Ajout de votes aux posts créés
+                        // Ajout de votes au post créé
                         votes: function (callback) {
-                            createPostVotesToPosts(allPosts, user, voteReasons, callback);
+                            createPostVotesToPost(post, users, voteReasons, callback);
                         },
-                        // Création de commentaires sur les posts existants
+                        // Création de commentaires sur le post existants
                         comments: function (callback) {
-                            createPostCommentsToPosts(allPosts, user, callback);
+                            createPostCommentsToPost(post, users, callback);
                         }
                     }, function (err, results) {
                         if (err) {
@@ -128,13 +129,12 @@ module.exports = {
                         Array.prototype.push.apply(comments, results.comments);
                         callback();
                     });
-
                 }, function (err) {
                     if (err) {
                         throw err;
                     }
-                    sails.log.info("FakerService - " + comments.length + " Comments created for all users");
-                    sails.log.info("FakerService - " + votes.length + " Votes created for all users");
+                    sails.log.info("FakerService - " + comments.length + " Comments created for all posts");
+                    sails.log.info("FakerService - " + votes.length + " Votes created for all posts");
                     sails.log.info("FakerService - FIN DE LA CREATION DE DONNEES GENEREES");
                     callback();
                 });
@@ -223,9 +223,9 @@ function createPostsFromImages(images, user, visibility, postType, callback) {
     });
 }
 
-function createPostVotesToPosts(posts, user, voteReasons, callback) {
+function createPostVotesToPost(post, users, voteReasons, callback) {
     var postVotes = [];
-    async.each(posts, function (post, callback) {
+    async.each(_.shuffle(users), function (user, callback) {
         if (!!Math.round(Math.random())) {
             var vote = !!Math.round(Math.random());
             sails.log.verbose("FakerService - vote :", vote);
@@ -248,12 +248,10 @@ function createPostVotesToPosts(posts, user, voteReasons, callback) {
     });
 }
 
-function createPostCommentsToPosts(posts, user, callback) {
+function createPostCommentsToPost(post, users, callback) {
     var postComments = [];
-    async.each(posts, function (post, callback) {
+    async.each(_.shuffle(users), function (user, callback) {
         if (!!Math.round(Math.random())) {
-            var vote = !!Math.round(Math.random());
-            sails.log.verbose("FakerService - vote :", vote);
             PostComment.create({
                 comment: faker.lorem.sentence(),
                 post: post.id,
