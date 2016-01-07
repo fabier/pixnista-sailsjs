@@ -33,9 +33,9 @@
                 controller will not be tied to this element. -->
             </ul>
         </div>
-        <% } else if(typeof loginFormVisible === 'undefined' || loginFormVisible === true) { %>
-        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-            <form ng-submit="submitLoginForm()" class="navbar-form navbar-right">
+        <% } else if(typeof loginFormVisibleIfNotLoggedIn === 'undefined' || loginFormVisibleIfNotLoggedIn === true) { %>
+        <div class="collapse navbar-collapse navbar-right" ng-class="!navCollapsed && 'in'">
+            <form ng-submit="submitLoginForm()" class="navbar-form">
 
                 <div class="form-group">
                     <input ng-model="loginForm.email"
@@ -53,7 +53,16 @@
                     <span ng-show="loginForm.loading">Signing in...</span>
                 </button>
                 <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                <a href="/auth/signup" class="btn btn-primary">
+                    Signup
+                </a>
             </form>
+        </div>
+        <% } else { %>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+            <div class="navbar-form navbar-right">
+                <p>TEST de la mort</p>
+            </div>
         </div>
         <% } %>
     </nav>
