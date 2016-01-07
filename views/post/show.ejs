@@ -1,4 +1,5 @@
-<%title=post.title%>
+<% title = post.title %>
+<% loginFormVisibleIfNotLoggedIn = true; %>
 <div class="container" ng-cloak>
     <div class="row">
         <div class="col-md-4">
@@ -33,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="row">
                 <h2>
                     <%=post.title%>
@@ -45,6 +46,7 @@
                     <% } %>
                 </h2>
             </div>
+
             <% var postComments = _.sortBy(post.postComments, 'createdAt').reverse(); %>
             <%if(postComments.length === 0){%>
             <p class="post-nocomment">Pas de commentaires pour cette demande d'aide.</p>
@@ -53,6 +55,9 @@
             <% include ../postComment/show %>
             <% }) %>
             <%}%>
+
+            <% var user = req.session.user; %>
+            <% if (typeof user !== 'undefined') { %>
             <div class="row" ng-controller="CreatePostCommentController">
                 <form id="postComment-form" ng-submit="submitPostCommentForm()" class="form-horizontal">
                     <h4>Ajouter un commentaire</h4>
@@ -73,6 +78,67 @@
                     <input type="hidden" id="postId" name="postId" value="<%=post.id%>"/>
                 </form>
             </div>
+            <% } else { %>
+            <div class="row"  ng-controller="LoginController" ng-cloak>
+                <!-- Login FORM -->
+                <form id="login-form" ng-submit="submitLoginForm()" class="form-horizontal">
+                    <h2>Pour commenter, veuillez vous logguer.</h2>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-4" ng-class="{'has-error':signin.email.$invalid && signin.email.$dirty}">
+                            <input type="email" class="form-control" id="email" name="email"
+                                   ng-model="loginForm.email"
+                                   placeholder="<%=faker.internet.email()%>" required>
+                            <span class="help-block has-error" ng-if="signin.email.$dirty">
+                                <span ng-show="signin.email.$error.required">Email address is required.</span>
+                                <span ng-show="signin.email.$error.email">Not a valid email address.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   ng-model="loginForm.password"
+                                   placeholder="<%=faker.internet.password()%>">
+                            <span class="help-block has-error" ng-if="signin.password.$dirty">
+                                <span ng-show="signin.password.$error.required">Password is required.</span>
+                                <span ng-show="signin.password.$error.minlength">Password must be at least 6 characters.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">
+                                <span ng-show="!loginForm.loading">Sign in</span>
+                                <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+                                <span ng-show="loginForm.loading">Signing in...</span>
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                </form>
+            </div>
+            <% } %>
+        </div>
+        <div class="col-sm-2">
+            <div class="c100 p<%= Math.round(positiveVotesCount / totalVotesCount * 100.0) %> center">
+                <span><%= Math.round(positiveVotesCount / totalVotesCount * 1000.0) / 10.0 %>%</span>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+            <% if (typeof user !== 'undefined') { %>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="" class="vote-button btn btn-success margin-5">+1</a>
+                </div>
+                <div class="col-sm-6">
+                    <a href="" class="vote-button btn btn-warning margin-5">-1</a>
+                </div>
+            </div>
+            <% } %>
         </div>
     </div>
 </div>

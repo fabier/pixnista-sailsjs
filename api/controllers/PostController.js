@@ -81,9 +81,17 @@ module.exports = {
                                     postComment.creator = creators[postComment.creator];
                                     return postComment;
                                 });
+
+                                var positiveVotesCount = _.filter(post.postVotes, function (vote) {
+                                    return vote.vote;
+                                }).length;
+
                                 res.view('post/show', {
                                     post: post,
-                                    moment: moment
+                                    totalVotesCount: post.postVotes.length,
+                                    positiveVotesCount: positiveVotesCount,
+                                    moment: moment,
+                                    faker: faker
                                 });
                             }
                         });
