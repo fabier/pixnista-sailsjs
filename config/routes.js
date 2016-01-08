@@ -36,7 +36,9 @@ module.exports.routes = {
     ////////////////////////////////////////////////////////////
 
     'GET /': 'PageController.showHomePage',
+    'GET /user/jwt': 'UserController.jwt',
     'GET /auth/signup': {view: 'auth/signup'},
+    'GET /auth/login': 'AuthController.login',
     //
     ////////////////////////////////////////////////////////////
     // JSON API
@@ -49,8 +51,16 @@ module.exports.routes = {
     //
     // Liste des posts qui ont besoin d'aide
     //
+    'GET /api/post/help': 'PostController.help',
     'GET /api/post/help/:limit': 'PostController.help',
+    //
+    // Liste des posts qui "mon style"
+    //
+    'GET /api/post/dressing': 'PostController.dressing',
     'GET /api/post/dressing/:limit': 'PostController.dressing',
+    //
+    // Ajouter une image à un post
+    //
     'POST /api/post/:id/images/:imageId': 'PostController.addToImages',
     ////////////////////////////////////////////////////////////
     //
