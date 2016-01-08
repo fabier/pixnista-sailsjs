@@ -7,18 +7,20 @@
 
 module.exports = {
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
+     * @api {get} /imageType Get all ImageTypes
+     * @apiName GetImageTypes
+     * @apiDescription Lists all available ImageTypes
+     * @apiGroup ImageType
      * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Object[]} array Array of ImageTypes
+     * @apiSuccess {Number} array.id ImageTypeId
+     * @apiSuccess {String} array.name Name of ImageType
+     * @apiSuccess {String} array.description Description of ImageType
+     * @apiSuccess {Array} array.extensions Extensions available for ImageType
+     * @apiSuccess {Array} array.mimetypes MimeTypes available for ImageType
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
@@ -26,65 +28,33 @@ module.exports = {
      */
     // find: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
+     * @api {get} /imageType/:id Get ImageType by Id
+     * @apiName GetImageTypeById
+     * @apiDescription Gets a ImageType by its Id
+     * @apiGroup ImageType
+     * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} id ImageTypeId
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} array.id ImageTypeId
+     * @apiSuccess {String} array.name Name of ImageType
+     * @apiSuccess {String} array.description Description of ImageType
+     * @apiSuccess {Array} array.extensions Extensions available for ImageType
+     * @apiSuccess {Array} array.mimetypes MimeTypes available for ImageType
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
      * @apiVersion 0.0.0
      */
+    // findOne: function
     create: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     update: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     destroy: function (req, res) {
         res.forbidden();
     }

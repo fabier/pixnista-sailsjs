@@ -7,18 +7,18 @@
 
 module.exports = {
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
+     * @api {get} /state Get all States
+     * @apiName GetStates
+     * @apiDescription Lists all available States
+     * @apiGroup State
      * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Object[]} array Array of States
+     * @apiSuccess {Number} array.id StateId
+     * @apiSuccess {String} array.name Name of State
+     * @apiSuccess {String} array.description Description of State
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
@@ -26,65 +26,31 @@ module.exports = {
      */
     // find: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
+     * @api {get} /state/:id Get State by Id
+     * @apiName GetStateById
+     * @apiDescription Gets a State by its Id
+     * @apiGroup State
+     * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} id StateId
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} array.id StateId
+     * @apiSuccess {String} array.name Name of State
+     * @apiSuccess {String} array.description Description of State
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
      * @apiVersion 0.0.0
      */
+    // findOne: function
     create: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     update: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     destroy: function (req, res) {
         res.forbidden();
     }

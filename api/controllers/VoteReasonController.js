@@ -7,18 +7,18 @@
 
 module.exports = {
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
+     * @api {get} /voteReason Get all VoteReasons
+     * @apiName GetVoteReasons
+     * @apiDescription Lists all available VoteReasons
+     * @apiGroup VoteReason
      * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Object[]} array Array of VoteReasons
+     * @apiSuccess {Number} array.id VoteReasonId
+     * @apiSuccess {String} array.name Name of VoteReason
+     * @apiSuccess {String} array.description Description of VoteReason
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
@@ -26,65 +26,31 @@ module.exports = {
      */
     // find: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
+     * @api {get} /voteReason/:id Get VoteReason by Id
+     * @apiName GetVoteReasonById
+     * @apiDescription Gets a VoteReason by its Id
+     * @apiGroup VoteReason
+     * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} id VoteReasonId
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} array.id VoteReasonId
+     * @apiSuccess {String} array.name Name of VoteReason
+     * @apiSuccess {String} array.description Description of VoteReason
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
      * @apiVersion 0.0.0
      */
+    // findOne: function
     create: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     update: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     destroy: function (req, res) {
         res.forbidden();
     }

@@ -9,15 +9,16 @@ module.exports = {
     /**
      * @api {get} /bodyType Get all bodyTypes
      * @apiName GetBodyTypes
-     * @apiDescription XXXTODOXXX
+     * @apiDescription Lists all available bodyTypes
      * @apiGroup BodyType
      * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Object[]} array Array of bodyTypes
+     * @apiSuccess {Number} array.id BodyTypeId
+     * @apiSuccess {String} array.name Name of bodyType
+     * @apiSuccess {String} array.description Description of bodyType
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
@@ -25,65 +26,31 @@ module.exports = {
      */
     // find: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
+     * @api {get} /bodyType/:id Get bodyType by Id
+     * @apiName GetBodyTypeById
+     * @apiDescription Gets a BodyType by its Id
      * @apiGroup BodyType
-     * @apiPermission Forbidden
+     * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} id BodyTypeId
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} array.id BodyTypeId
+     * @apiSuccess {String} array.name Name of bodyType
+     * @apiSuccess {String} array.description Description of bodyType
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
      *
      * @apiSampleRequest off
      *
      * @apiVersion 0.0.0
      */
+    // findOne: function
     create: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup BodyType
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     update: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup BodyType
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} bodyTypeId BodyType Id
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     destroy: function (req, res) {
         res.forbidden();
     }
