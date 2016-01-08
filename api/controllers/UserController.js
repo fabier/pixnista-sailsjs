@@ -8,8 +8,24 @@
 
 module.exports = require('waterlock').actions.user({
     /**
-     * Il est interdit de lister les utilisateurs depuis l'API Rest
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
      */
+    // Il est interdit de lister les utilisateurs depuis l'API Rest
     find: function (req, res) {
         res.forbidden();
     },
@@ -61,8 +77,24 @@ module.exports = require('waterlock').actions.user({
         });
     },
     /**
-     * Create a user account (Signup).
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
      */
+    // Create a user account (Signup).
     create: function (req, res) {
         UserService.create({
             name: req.param('name'),
@@ -98,6 +130,24 @@ module.exports = require('waterlock').actions.user({
         // Either send a 200 OK or redirect to the home page
         return res.backToHomePage();
     },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     update: function (req, res) {
         User.findOne({
             id: req.param('id')
@@ -142,5 +192,26 @@ module.exports = require('waterlock').actions.user({
                 res.notFound();
             }
         });
+    },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission Forbidden
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    destroy: function (req, res) {
+        res.forbidden();
     }
 });

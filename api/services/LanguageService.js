@@ -25,12 +25,6 @@ module.exports = {
             }
         });
     },
-    /**
-     *
-     * @param {type} options (contains : name, description)
-     * @param {type} callback
-     * @returns {undefined}
-     */
     create: function (options, callback) {
         Language.create(options, function (err, post) {
             if (err) {

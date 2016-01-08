@@ -10,7 +10,44 @@ var async = require('async');
 var fs = require('fs');
 module.exports = {
     /**
-     * Fonction de création d'une image pour l'API
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // Il est interdit de lister l'ensemble des imageDatas
+    find: function (req, res) {
+        res.forbidden();
+    },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
      */
     create: function (req, res) {
         req.file('image').upload(function (err, files) {
@@ -32,10 +69,24 @@ module.exports = {
             });
         });
     },
-    // Il est interdit de lister l'ensemble des imageDatas
-    find: function (req, res) {
-        res.forbidden();
-    },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     // Fonction d'affichage d'une imageData
     findOne: function (req, res) {
         ImageData.findOne(req.param('id'), function (err, imageData) {
@@ -50,10 +101,46 @@ module.exports = {
             }
         });
     },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     // Il est interdit de mettre à jour les données d'une image
     update: function (req, res) {
         res.forbidden();
     },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     // Il est interdit de supprimer les données d'une image
     destroy: function (req, res) {
         res.forbidden();

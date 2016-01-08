@@ -27,12 +27,6 @@ module.exports = {
             }
         });
     },
-    /**
-     *
-     * @param {type} options (contains : name, description)
-     * @param {type} callback
-     * @returns {undefined}
-     */
     create: function (options, callback) {
         VoteReason.create(options, function (err, voteReason) {
             if (err) {

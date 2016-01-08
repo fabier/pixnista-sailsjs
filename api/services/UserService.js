@@ -6,12 +6,6 @@
 var async = require('async');
 
 module.exports = {
-    /**
-     *
-     * @param {type} options (contains : email, password)
-     * @param {type} callback
-     * @returns {undefined}
-     */
     create: function (options, callback) {
         if (options.constructor === Array) {
             var users = [];

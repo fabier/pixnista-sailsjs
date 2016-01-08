@@ -11,6 +11,23 @@ var mergeDefaults = require('merge-defaults');
 var _ = require('underscore');
 
 module.exports = {
+    /**
+     * @api {post} /post Creating a new post
+     * @apiName CreatePost
+     * @apiDescription  Creates a new post using parameters submitted
+     * @apiGroup Post
+     * @apiPermission none
+     *
+     * @apiParam {String} title Title of the Post
+     * @apiParam {String} content Content of the Post
+     * @apiParam {Number} creator Identifier of the creator
+     *
+     * @apiSuccess {Number} id Post unique Identifier
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     create: function (req, res) {
         var params = mergeDefaults(req.params.all(), {creator: req.session.user.id});
         Post.create(params, function (err, post) {
@@ -21,14 +38,51 @@ module.exports = {
         });
     },
     /**
-     * Il est interdit de lister les posts depuis l'API Rest
+     * @api {get} /post Get all Posts information
+     * @apiName GetPosts
+     * @apiGroup Post
+     * @apiDescription Gets all posts informations.
+     *
+     * This method always returns HTTP 1.1/403 Forbidden.
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 403 Forbidden
      */
+    // Il est interdit de lister les posts depuis l'API Rest
     find: function (req, res) {
         res.forbidden();
     },
+    /**
+     * @api {get} /post/help Get top 10 'help' posts
+     * @apiName GetHelpPosts
+     * @apiGroup Post
+     * @apiDescription Gets top 10 'help' posts informations.
+     */
+    /**
+     * @api {get} /post/help/:limit Get top [limit] 'help' posts
+     * @apiName GetHelpPostsWithLimit
+     * @apiGroup Post
+     * @apiDescription Get top [limit] 'help' posts informations.<br/>
+     * limit min value is 1.<br/>
+     * limit max value is 100.
+     */
     help: function (req, res) {
         findPostsByPostType('help', req, res);
     },
+    /**
+     * @api {get} /post/dressing Get top 10 'dressing' posts
+     * @apiName GetDressingPosts
+     * @apiGroup Post
+     * @apiDescription Gets top 10 'dressing' posts informations.
+     */
+    /**
+     * @api {get} /post/dressing/:limit Get top [limit] 'help' posts
+     * @apiName GetDressingPostsWithLimit
+     * @apiGroup Post
+     * @apiDescription Get top [limit] 'dressing' posts informations.<br/>
+     * limit min value is 1.<br/>
+     * limit max value is 100.
+     */
     dressing: function (req, res) {
         findPostsByPostType('dressing', req, res);
     },
@@ -40,6 +94,24 @@ module.exports = {
             res.view("post/create", {faker: faker});
         }
     },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     addToImages: function (req, res) {
         var postId = req.param('id');
         var imageId = req.param('imageId');
@@ -107,7 +179,7 @@ function findPostsByPostType(postTypeName, req, res) {
         if (err) {
             res.negotiate(err);
         } else {
-            var limit = Math.min(req.param('limit') || 30, 30);
+            var limit = Math.min(Math.max(req.param('limit') || 10, 1), 100);
             Post.find({postType: postType.id}).limit(limit).populate('images').exec(function (err, posts) {
                 if (err) {
                     res.negotiate(err);

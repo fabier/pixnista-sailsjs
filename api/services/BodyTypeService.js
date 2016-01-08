@@ -26,12 +26,6 @@ module.exports = {
             }
         });
     },
-    /**
-     *
-     * @param {type} options (contains : name, description)
-     * @param {type} callback
-     * @returns {undefined}
-     */
     create: function (options, callback) {
         BodyType.create(options, function (err, post) {
             if (err) {

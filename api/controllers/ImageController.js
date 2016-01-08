@@ -7,11 +7,101 @@
 
 module.exports = {
     /**
-     * Il est interdit de lister les images depuis l'API Rest
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription It is forbidden to list images from REST API
+     * @apiGroup XXXTODOXXX
+     * @apiPermission Forbidden
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
      */
     find: function (req, res) {
         res.forbidden();
     },
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // create: function
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // update: function
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // destroy: function
+    /**
+     * @apiIgnore Not documented yet
+     * @api {get} /XXXTODOXXX XXXTODOXXX
+     * @apiName XXXTODOXXX
+     * @apiDescription XXXTODOXXX
+     * @apiGroup XXXTODOXXX
+     * @apiPermission none
+     *
+     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} XXXTODOXXX
+     *
+     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {String} XXXTODOXXX
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     show: function (req, res) {
         Image.findOne(req.param('id')).populate('imageData').exec(function (err, image) {
             if (err) {
@@ -86,6 +176,6 @@ module.exports = {
                 }
             });
         });
-    },
+    }
 };
 

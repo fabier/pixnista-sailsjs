@@ -7,14 +7,7 @@ var md5 = require('md5');
 var fs = require('fs');
 
 module.exports = {
-    /**
-     *
-     * @param {type} options (contains : data, filename, imageType)
-     * @param {type} callback
-     * @returns {undefined}
-     */
     create: function (options, callback) {
-        options
         ImageData.create(options, function (err, post) {
             if (err) {
                 sails.log.warn("ImageDataService : Impossible to create a ImageData", options, err);
