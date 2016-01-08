@@ -11,14 +11,7 @@
 var faker = require('faker');
 
 module.exports = require('waterlock').waterlocked({
-    /* e.g.
-     action: function(req, res){
-
-     }
-     */
-
     login: function (req, res) {
         res.view("auth/login", {faker: faker});
     }
-
 });
