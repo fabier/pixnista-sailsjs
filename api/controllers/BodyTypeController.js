@@ -7,16 +7,16 @@
 
 module.exports = {
     /**
-     * @api {get} /bodyType Get all bodyTypes
+     * @api {get} /bodyType Get all BodyTypes
      * @apiName GetBodyTypes
-     * @apiDescription Lists all available bodyTypes
+     * @apiDescription Lists all available BodyTypes
      * @apiGroup BodyType
      * @apiPermission none
      *
-     * @apiSuccess {Object[]} array Array of bodyTypes
+     * @apiSuccess {Object[]} array Array of BodyTypes
      * @apiSuccess {Number} array.id BodyTypeId
-     * @apiSuccess {String} array.name Name of bodyType
-     * @apiSuccess {String} array.description Description of bodyType
+     * @apiSuccess {String} array.name Name of BodyType
+     * @apiSuccess {String} array.description Description of BodyType
      * @apiSuccess {Date} array.createdAt Creation date
      * @apiSuccess {Date} array.updatedAt Last update date
      *
@@ -26,7 +26,7 @@ module.exports = {
      */
     // find: function
     /**
-     * @api {get} /bodyType/:id Get bodyType by Id
+     * @api {get} /bodyType/:id Get BodyType by Id
      * @apiName GetBodyTypeById
      * @apiDescription Gets a BodyType by its Id
      * @apiGroup BodyType
@@ -35,8 +35,8 @@ module.exports = {
      * @apiParam {Number} id BodyTypeId
      *
      * @apiSuccess {Number} array.id BodyTypeId
-     * @apiSuccess {String} array.name Name of bodyType
-     * @apiSuccess {String} array.description Description of bodyType
+     * @apiSuccess {String} array.name Name of BodyType
+     * @apiSuccess {String} array.description Description of BodyType
      * @apiSuccess {Date} array.createdAt Creation date
      * @apiSuccess {Date} array.updatedAt Last update date
      *
