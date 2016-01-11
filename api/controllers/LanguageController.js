@@ -52,45 +52,9 @@ module.exports = {
     create: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     update: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     destroy: function (req, res) {
         res.forbidden();
     }
