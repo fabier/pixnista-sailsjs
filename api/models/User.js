@@ -145,6 +145,11 @@ module.exports = {
         postComments: {
             collection: 'PostComment',
             via: 'creator'
+        },
+        // Vote émis par cet utilisateur sur des commentaires de posts
+        postCommentVotes: {
+            collection: 'PostCommentVote',
+            via: 'creator'
         }
     }),
     // Lifecycle Callbacks
