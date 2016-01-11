@@ -84,7 +84,7 @@ module.exports = {
      * @apiVersion 0.0.0
      */
     show: function (req, res) {
-        Image.findOne(req.param('id')).populate('imageData').exec(function (err, image) {
+        Image.findOne(req.param('imageId')).populate('imageData').exec(function (err, image) {
             if (err) {
                 res.negotiate(err);
             } else {
@@ -113,9 +113,9 @@ module.exports = {
      * @apiGroup Image
      * @apiPermission USER
      *
-     * @apiParam {Number} file The file to upload.
+     * @apiParam {File} file ImageData as file, in <code>&lt;input type="file"/&gt;</code>
      *
-     * @apiSuccess {Number} id The ImageId deleted
+     * @apiSuccess {Number} id The ImageId created
      *
      * @apiSampleRequest off
      *
