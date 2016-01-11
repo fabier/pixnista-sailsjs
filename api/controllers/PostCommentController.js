@@ -7,49 +7,27 @@
 var mergeDefaults = require('merge-defaults');
 
 module.exports = {
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     // Il est interdit de lister les commentaires de posts depuis l'API Rest
     find: function (req, res) {
         res.forbidden();
     },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {post} /postComment Create a PostComment
+     * @apiName CreatePostComment
+     * @apiDescription Creates a new Comment on a Post
+     * @apiGroup PostComment
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {String} comment PostComment content
+     * @apiParam {Number} post PostId on which the comment is about.
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} postId the Id for the newly created PostComment
      *
      * @apiSampleRequest off
      *
      * @apiVersion 0.0.0
      */
     create: function (req, res) {
-        console.log('req.params.all()', req.params.all());
-        console.log('req.body', req.body);
         var params = mergeDefaults(req.params.all(), {creator: req.session.user.id});
         PostComment.create(params, function (err, postComment) {
             if (err)
@@ -57,44 +35,14 @@ module.exports = {
             // Send JSONP-friendly response if it's supported
             res.created(postComment);
         });
+    },
+    // Interdit de mettre à jour un commentaire depuis l'API (dans un premier temps)
+    update: function (req, res) {
+        res.forbidden();
+    },
+    // Interdit de supprimer un commentaire depuis l'API (dans un premier temps)
+    destroy: function (req, res) {
+        res.forbidden();
     }
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
-    // update: function
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
-    // destroy : function
 };
 
