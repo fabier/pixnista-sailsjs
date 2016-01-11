@@ -23,7 +23,7 @@ angular.module('PixnistaModule').controller('CreatePostController', ['$scope', '
                         toastr.warning('Only one image please...', 'Warning');
                     } else if (images.length === 1) {
                         var image = images[0];
-                        $scope.postForm.image = {id: image.id, url: '/image/show/' + image.id};
+                        $scope.postForm.image = {id: image.id, url: '/api/image/show/' + image.id};
                         $scope.postForm.imageUploaded = true;
                         toastr.success('Image sent !', 'YEAH !');
                     } else {

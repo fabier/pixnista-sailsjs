@@ -62,6 +62,8 @@ module.exports.routes = {
     // Ajouter une image à un post
     //
     'POST /api/post/:id/images/:imageId': 'PostController.addToImages',
+    // Afficher une image
+    'GET /api/image/show/:imageId': 'ImageController.show',
     ////////////////////////////////////////////////////////////
     //
 
@@ -76,7 +78,7 @@ module.exports.routes = {
      ***************************************************************************/
 
     // Images
-    'GET /image/show': 'ImageController.show',
+    'GET /image/show/:imageId': 'ImageController.show',
     'GET /image/upload': 'ImageController.upload',
     // Posts
     'GET /post/new': 'PostController.new',
