@@ -45,12 +45,15 @@ module.exports = {
      * @apiVersion 0.0.0
      */
     // findOne: function
+    // Interdit de créer un State depuis l'API
     create: function (req, res) {
         res.forbidden();
     },
+    // Interdit de mettre à jour un State depuis l'API
     update: function (req, res) {
         res.forbidden();
     },
+    // Interdit de supprimer un State depuis l'API
     destroy: function (req, res) {
         res.forbidden();
     }

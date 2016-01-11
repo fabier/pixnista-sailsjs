@@ -45,12 +45,15 @@ module.exports = {
      * @apiVersion 0.0.0
      */
     // findOne: function
+    // Interdit de créer un Visibility depuis l'API
     create: function (req, res) {
         res.forbidden();
     },
+    // Interdit de mettre à jour un Visibility depuis l'API
     update: function (req, res) {
         res.forbidden();
     },
+    // Interdit de supprimer un Visibility depuis l'API
     destroy: function (req, res) {
         res.forbidden();
     }
