@@ -6,40 +6,24 @@
  */
 
 module.exports = {
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription It is forbidden to list images from REST API
-     * @apiGroup XXXTODOXXX
-     * @apiPermission Forbidden
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     find: function (req, res) {
         res.forbidden();
     },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {post} /image Create a new Image
+     * @apiName CreateImage
+     * @apiDescription Creates a new Image, storing all its metadata.<br/>
+     * You need to create ImageData before calling this method, or have an already ImageData ID available.
+     * @apiGroup Image
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {String} name Name of the Image
+     * @apiParam {String} filename Original filename of the Image
+     * @apiParam {String} description Description of the Image, if any
+     * @apiParam {Number} imageData ImageDataId containing data contents for this Image
+     * @apiParam {Number} imageType ImageTypeId of this Image
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id The newly ImageId created
      *
      * @apiSampleRequest off
      *
@@ -47,18 +31,20 @@ module.exports = {
      */
     // create: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {put} /image/:id Update an Image
+     * @apiName UpdateImage
+     * @apiDescription Updates an Image, changing some or all of its metadata.
+     * @apiGroup Image
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} :id ImageId of the Image to update
+     * @apiParam {String} name Name of the Image
+     * @apiParam {String} filename Original filename of the Image
+     * @apiParam {String} description Description of the Image, if any
+     * @apiParam {Number} imageData ImageDataId containing data contents for this Image
+     * @apiParam {Number} imageType ImageTypeId of this Image
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id The newly ImageId created
      *
      * @apiSampleRequest off
      *
@@ -66,18 +52,15 @@ module.exports = {
      */
     // update: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {delete} /image/:id Delete an Image
+     * @apiName DeleteImage
+     * @apiDescription Deletes an existing Image
+     * @apiGroup Image
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} :id ImageId of the Image to delete
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id The ImageId deleted
      *
      * @apiSampleRequest off
      *
@@ -85,18 +68,16 @@ module.exports = {
      */
     // destroy: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {get} /image/show/:id Show an Image
+     * @apiName ShowImage
+     * @apiDescription Get ImageData of the Image as Binary data.<br/>
+     * Useful for <code>&lt;img src="/api/image/show/1234"/&gt;</code> in HTML.
+     * @apiGroup Image
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} :id ImageId of the Image to delete
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id The ImageId deleted
      *
      * @apiSampleRequest off
      *
@@ -123,6 +104,23 @@ module.exports = {
             }
         });
     },
+    /**
+     * @api {post} /image Upload a new Image
+     * @apiName UploadImage
+     * @apiDescription Uploads a new Image using only binary data.<br/>
+     * It automatically finds the ImageType and filename, but isn't capable to store description.<br/>
+     * The typical use is in a <code>&lt;form&gt;</code>, using a <code>&lt;input type="file"/&gt;</code>.
+     * @apiGroup Image
+     * @apiPermission USER
+     *
+     * @apiParam {Number} file The file to upload.
+     *
+     * @apiSuccess {Number} id The ImageId deleted
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     // Pour l'upload de nouvelles images
     upload: function (req, res) {
         req.file('file').upload(function (err, files) {
