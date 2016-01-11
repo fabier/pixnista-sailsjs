@@ -9,6 +9,7 @@ var md5 = require('md5');
 var async = require('async');
 var fs = require('fs');
 module.exports = {
+    // Interdit de lister les ImageData depuis l'API
     find: function (req, res) {
         res.forbidden();
     },
