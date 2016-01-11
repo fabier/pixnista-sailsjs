@@ -9,41 +9,19 @@ var md5 = require('md5');
 var async = require('async');
 var fs = require('fs');
 module.exports = {
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
-    // Il est interdit de lister l'ensemble des imageDatas
     find: function (req, res) {
         res.forbidden();
     },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {post} /imageData Create a new ImageData
+     * @apiName CreateImageData
+     * @apiDescription Creates a new ImageData, storing only binary data.s
+     * @apiGroup Image
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {File} image ImageData as file, in <code>&lt;input type="file"/&gt;</code>
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id The ImageDataId created
      *
      * @apiSampleRequest off
      *
@@ -70,18 +48,15 @@ module.exports = {
         });
     },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {get} /imageData/:imageDataId Get ImageData Binary data
+     * @apiName GetImageData
+     * @apiDescription Gets ImageData as binary stream
+     * @apiGroup Image
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} imageDataId The ImageDataId to get
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Byte} data The binary data for this ImageData
      *
      * @apiSampleRequest off
      *
@@ -101,46 +76,10 @@ module.exports = {
             }
         });
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     // Il est interdit de mettre à jour les données d'une image
     update: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     // Il est interdit de supprimer les données d'une image
     destroy: function (req, res) {
         res.forbidden();
