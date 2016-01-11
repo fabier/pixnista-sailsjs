@@ -6,9 +6,33 @@
  */
 
 module.exports = {
+    // Interdit de lister les images depuis l'API
     find: function (req, res) {
         res.forbidden();
     },
+    /**
+     * @api {get} /image/:id Get Image by Id
+     * @apiName GetImageById
+     * @apiDescription Gets Image and its metadata by its Id
+     * @apiGroup Image
+     * @apiPermission none
+     *
+     * @apiParam {Number} id ImageId
+     *
+     * @apiSuccess {Number} array.id ImageId
+     * @apiSuccess {String} array.name Name of Image
+     * @apiSuccess {String} array.filename Image's Filename
+     * @apiSuccess {String} array.description Image's Description
+     * @apiSuccess {String} array.imageData ImageDataId for this Image
+     * @apiSuccess {String} array.imageType ImageTypeId for this Image
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // findOne: function
     /**
      * @api {post} /image Create a new Image
      * @apiName CreateImage
