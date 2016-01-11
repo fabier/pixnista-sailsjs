@@ -6,38 +6,22 @@
  */
 
 module.exports = {
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     // Il est interdit de lister les messages depuis l'API Rest
     find: function (req, res) {
         res.forbidden();
-    }
+    },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {post} /message Create a new message
+     * @apiName CreateMessage
+     * @apiDescription Creates a new message, from an authenticated user to another.
+     * If the user emitter is not blacklisted by the recipient, then the message is transmitted to the recipient.
+     * <br/>
+     * <b>NOT IMPLEMENTED YET</b>
+     * @apiGroup Message
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {String} message Message content
+     * @apiParam {Number} recipient The recipient of the message
      *
      * @apiSuccess {String} XXXTODOXXX
      * @apiSuccess {String} XXXTODOXXX
@@ -47,43 +31,13 @@ module.exports = {
      * @apiVersion 0.0.0
      */
     // create: function
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
-    // update: function
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
-    // destroy: function
+    // Interdit de mettre à jour un message depuis l'API (dans un premier temps)
+    update: function (req, res) {
+        res.forbidden();
+    },
+    // Interdit de supprimer un message posté depuis l'API (dans un premier temps)
+    destroy: function (req, res) {
+        res.forbidden();
+    }
 };
 
