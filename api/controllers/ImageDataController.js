@@ -14,6 +14,35 @@ module.exports = {
         res.forbidden();
     },
     /**
+     * @api {get} /imageData/:imageDataId Get ImageData Binary data
+     * @apiName GetImageData
+     * @apiDescription Gets ImageData as binary stream
+     * @apiGroup Image
+     * @apiPermission USER
+     *
+     * @apiParam {Number} imageDataId The ImageDataId to get
+     *
+     * @apiSuccess {Byte} data The binary data for this ImageData
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // Fonction d'affichage d'une imageData
+    findOne: function (req, res) {
+        ImageData.findOne(req.param('id'), function (err, imageData) {
+            if (err) {
+                res.negotiate(err);
+            } else if (imageData) {
+                res.set('Content-Type', imageData.type);
+                res.send(imageData.data);
+            } else {
+                // Pas de contenu trouvé
+                res.notFound();
+            }
+        });
+    },
+    /**
      * @api {post} /imageData Create a new ImageData
      * @apiName CreateImageData
      * @apiDescription Creates a new ImageData, storing only binary data.s
@@ -46,35 +75,6 @@ module.exports = {
                     return res.status(201).json(imageDatas);
                 }
             });
-        });
-    },
-    /**
-     * @api {get} /imageData/:imageDataId Get ImageData Binary data
-     * @apiName GetImageData
-     * @apiDescription Gets ImageData as binary stream
-     * @apiGroup Image
-     * @apiPermission USER
-     *
-     * @apiParam {Number} imageDataId The ImageDataId to get
-     *
-     * @apiSuccess {Byte} data The binary data for this ImageData
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
-    // Fonction d'affichage d'une imageData
-    findOne: function (req, res) {
-        ImageData.findOne(req.param('id'), function (err, imageData) {
-            if (err) {
-                res.negotiate(err);
-            } else if (imageData) {
-                res.set('Content-Type', imageData.type);
-                res.send(imageData.data);
-            } else {
-                // Pas de contenu trouvé
-                res.notFound();
-            }
         });
     },
     // Il est interdit de mettre à jour les données d'une image
