@@ -6,42 +6,24 @@
  */
 
 module.exports = {
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     // Il est interdit de lister les votes de posts depuis l'API Rest
     find: function (req, res) {
         res.forbidden();
     },
     /**
-     * @api {get} /language/:id Get Language by Id
-     * @apiName GetLanguageById
-     * @apiDescription Gets a Language by its Id
-     * @apiGroup Language
+     * @api {get} /postVote/:id Get PostVote by Id
+     * @apiName GetPostVoteById
+     * @apiDescription Gets a PostVote by its Id
+     * @apiGroup PostVote
      * @apiPermission none
      *
-     * @apiParam {Number} id LanguageId
+     * @apiParam {Number} id PostVoteId
      *
-     * @apiSuccess {Number} array.id LanguageId
+     * @apiSuccess {Number} array.id PostVoteId
      * @apiSuccess {Boolean} array.vote The value of the vote, true means positive vote, false is for negative vote
      * @apiSuccess {String} array.comment Text comment written by voter
-     * @apiSuccess {String} array.creator UserId that submitted this vote
-     * @apiSuccess {String} array.voteReason The reason explaining why the vote is negative (when vote is negative only)
+     * @apiSuccess {Number} array.creator UserId that submitted this vote
+     * @apiSuccess {Number} array.voteReason The reason explaining why the vote is negative (when vote is negative only)
      * @apiSuccess {Date} array.createdAt Creation date
      * @apiSuccess {Date} array.updatedAt Last update date
      *
@@ -51,18 +33,19 @@ module.exports = {
      */
     // findOne: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {post} /postVote Creates a PostVote
+     * @apiName CreatePostVote
+     * @apiDescription Creates a new PostVote on an existing Post
+     * @apiGroup PostVote
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Boolean} array.post The PostId on which the User wants to submit a vote
+     * @apiParam {Boolean} array.vote The value of the vote, true means positive vote, false is for negative vote
+     * @apiParam {String} array.comment Text comment written by voter
+     * @apiParam {String} array.creator UserId that submitted this vote
+     * @apiParam {Number} array.voteReason The reason explaining why the vote is negative (when vote is negative only)
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id PostVoteId newly created
      *
      * @apiSampleRequest off
      *
