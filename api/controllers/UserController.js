@@ -64,18 +64,14 @@ module.exports = require('waterlock').actions.user({
      * match a real user in the database, sign in.
      */
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
+     * @api {put} /login Login
+     * @apiName UserLogin
+     * @apiDescription Logs a user in
+     * @apiGroup User
      * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiParam {String} email The user's email
+     * @apiParam {String} password The user's password
      *
      * @apiSampleRequest off
      *
@@ -125,18 +121,17 @@ module.exports = require('waterlock').actions.user({
         });
     },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
+     * @api {post} /signup Signups a new User
+     * @apiName SignupUser
+     * @apiDescription Creates a new User
+     * @apiGroup User
      * @apiPermission none
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {String} name User's display name
+     * @apiParam {String} email User's email
+     * @apiParam {String} password User's password
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id Id of the newly created User
      *
      * @apiSampleRequest off
      *
@@ -172,18 +167,11 @@ module.exports = require('waterlock').actions.user({
      * (wipes `user` from the session)
      */
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @api {get} /logout Logs out a User
+     * @apiName LogOutUser
+     * @apiDescription Logs out a connected User
+     * @apiGroup User
+     * @apiPermission User
      *
      * @apiSampleRequest off
      *
@@ -197,32 +185,23 @@ module.exports = require('waterlock').actions.user({
         return res.backToHomePage();
     },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {put} /user/:id Updates a User
+     * @apiName UpdateUser
+     * @apiDescription Updates User metadata, User must be logged in
+     * @apiGroup User
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {String} password The new password
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} id The UserId updated
      *
      * @apiSampleRequest off
      *
      * @apiVersion 0.0.0
      */
     update: function (req, res) {
-        User.findOne({
-            id: req.param('id')
-        }, function (err, user) {
-            if (err)
-                return res.negotiate(err);
-            if (!user)
-                return res.notFound();
-
+        if (req.session.user) {
+            var user = req.session.user;
             // Utilisateur trouvé, tout va bien
             var Passwords = require('machinepack-passwords');
 
@@ -246,7 +225,9 @@ module.exports = require('waterlock').actions.user({
                             }
                     );
                 }});
-        });
+        } else {
+            res.notFound();
+        }
     },
     show: function (req, res) {
         User.findOne(req.param("id"), function (err, user) {
