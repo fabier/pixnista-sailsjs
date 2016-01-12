@@ -1,7 +1,7 @@
 /**
  * PostController
  *
- * @description :: Server-side logic for managing posts
+ * @description :: Server-side logic for managing Posts
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
@@ -11,14 +11,14 @@ var mergeDefaults = require('merge-defaults');
 var _ = require('underscore');
 
 module.exports = {
-    // Il est interdit de lister les posts depuis l'API Rest
+    // Il est interdit de lister les Posts depuis l'API Rest
     find: function (req, res) {
         res.forbidden();
     },
     /**
-     * @api {post} /post Creating a new post
+     * @api {post} /post Creating a new Post
      * @apiName CreatePost
-     * @apiDescription  Creates a new post using parameters submitted
+     * @apiDescription  Creates a new Post using parameters submitted
      * @apiGroup Post
      * @apiPermission none
      *
@@ -42,16 +42,16 @@ module.exports = {
         });
     },
     /**
-     * @api {get} /post/help Get top 10 'help' posts
+     * @api {get} /post/help Get top 10 'help' Posts
      * @apiName GetHelpPosts
      * @apiGroup Post
-     * @apiDescription Gets top 10 'help' posts informations.
+     * @apiDescription Gets top 10 'help' Posts informations.
      */
     /**
-     * @api {get} /post/help/:limit Get top [limit] 'help' posts
+     * @api {get} /post/help/:limit Get top [limit] 'help' Posts
      * @apiName GetHelpPostsWithLimit
      * @apiGroup Post
-     * @apiDescription Get top [limit] 'help' posts informations.<br/>
+     * @apiDescription Get top [limit] 'help' Posts informations.<br/>
      * limit min value is 1.<br/>
      * limit max value is 100.
      */
@@ -59,16 +59,16 @@ module.exports = {
         findPostsByPostType('help', req, res);
     },
     /**
-     * @api {get} /post/dressing Get top 10 'dressing' posts
+     * @api {get} /post/dressing Get top 10 'dressing' Posts
      * @apiName GetDressingPosts
      * @apiGroup Post
-     * @apiDescription Gets top 10 'dressing' posts informations.
+     * @apiDescription Gets top 10 'dressing' Posts informations.
      */
     /**
-     * @api {get} /post/dressing/:limit Get top [limit] 'help' posts
+     * @api {get} /post/dressing/:limit Get top [limit] 'help' Posts
      * @apiName GetDressingPostsWithLimit
      * @apiGroup Post
-     * @apiDescription Get top [limit] 'dressing' posts informations.<br/>
+     * @apiDescription Get top [limit] 'dressing' Posts informations.<br/>
      * limit min value is 1.<br/>
      * limit max value is 100.
      */
@@ -84,27 +84,23 @@ module.exports = {
         }
     },
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {post} /post/:postId/addToImages/:imageId Add an Image to an Post
+     * @apiName PostAddToImages
+     * @apiDescription Adds an existing Image to an existing Post
+     * @apiGroup Post
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiParam {Number} postId PostId on which to add an existing Image
+     * @apiParam {Number} imageId ImageId of the Image to add
      *
      * @apiSampleRequest off
      *
      * @apiVersion 0.0.0
      */
     addToImages: function (req, res) {
-        var postId = req.param('id');
+        var postId = req.param('postId');
         var imageId = req.param('imageId');
-        Post.findOne(req.param('id'), function (err, post) {
+        Post.findOne(postId, function (err, post) {
             if (err) {
                 res.negotiate(err);
             } else {
@@ -161,6 +157,23 @@ module.exports = {
                     }
                 });
     },
+    /**
+     * @api {put} /post Updates a Post
+     * @apiName CreatePost
+     * @apiDescription  Creates a new Post using parameters submitted
+     * @apiGroup Post
+     * @apiPermission none
+     *
+     * @apiParam {String} title Title of the Post
+     * @apiParam {String} content Content of the Post
+     * @apiParam {Number} creator Identifier of the creator
+     *
+     * @apiSuccess {Number} id Post unique Identifier
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
     // update: function
     // Interdit de supprimer un PostCommentVote depuis l'API
     destroy: function (req, res) {
