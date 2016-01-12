@@ -38,10 +38,10 @@ module.exports = {
      * @apiParam {Number} id LanguageId
      *
      * @apiSuccess {Number} array.id LanguageId
-     * @apiSuccess {String} array.name Name of Language
-     * @apiSuccess {String} array.description Description of Language
-     * @apiSuccess {String} array.nativeName Native name of Language
-     * @apiSuccess {String} array.isocode6391 ISO Code 6391 for Language
+     * @apiSuccess {Boolean} array.vote The value of the vote, true means positive vote, false is for negative vote
+     * @apiSuccess {String} array.comment Text comment written by voter
+     * @apiSuccess {String} array.creator UserId that submitted this vote
+     * @apiSuccess {String} array.voteReason The reason explaining why the vote is negative (when vote is negative only)
      * @apiSuccess {Date} array.createdAt Creation date
      * @apiSuccess {Date} array.updatedAt Last update date
      *
