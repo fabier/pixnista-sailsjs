@@ -11,6 +11,10 @@ var mergeDefaults = require('merge-defaults');
 var _ = require('underscore');
 
 module.exports = {
+    // Il est interdit de lister les posts depuis l'API Rest
+    find: function (req, res) {
+        res.forbidden();
+    },
     /**
      * @api {post} /post Creating a new post
      * @apiName CreatePost
@@ -36,21 +40,6 @@ module.exports = {
             // Send JSONP-friendly response if it's supported
             res.created(post);
         });
-    },
-    /**
-     * @api {get} /post Get all Posts information
-     * @apiName GetPosts
-     * @apiGroup Post
-     * @apiDescription Gets all posts informations.
-     *
-     * This method always returns HTTP 1.1/403 Forbidden.
-     *
-     * @apiSuccessExample Success-Response:
-     *     HTTP/1.1 403 Forbidden
-     */
-    // Il est interdit de lister les posts depuis l'API Rest
-    find: function (req, res) {
-        res.forbidden();
     },
     /**
      * @api {get} /post/help Get top 10 'help' posts
@@ -171,6 +160,11 @@ module.exports = {
                         res.notFound();
                     }
                 });
+    },
+    // update: function
+    // Interdit de supprimer un PostCommentVote depuis l'API
+    destroy: function (req, res) {
+        res.forbidden();
     }
 };
 
