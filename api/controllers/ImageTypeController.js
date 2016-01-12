@@ -49,12 +49,15 @@ module.exports = {
      * @apiVersion 0.0.0
      */
     // findOne: function
+    // Interdit de créer un ImageType depuis l'API
     create: function (req, res) {
         res.forbidden();
     },
+    // Interdit de mettre à jour un ImageType depuis l'API
     update: function (req, res) {
         res.forbidden();
     },
+    // Interdit de supprimer un ImageType depuis l'API
     destroy: function (req, res) {
         res.forbidden();
     }
