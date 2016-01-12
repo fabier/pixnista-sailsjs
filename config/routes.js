@@ -47,6 +47,10 @@ module.exports.routes = {
     // User authentication
     'PUT /api/login': 'UserController.login',
     'GET /api/logout': 'UserController.logout',
+    'POST /api/signup': 'UserController.create',
+    //
+    // Créer une image
+    //
     'POST /api/imageData': 'ImageDataController.create',
     //
     // Liste des posts qui ont besoin d'aide
@@ -62,7 +66,9 @@ module.exports.routes = {
     // Ajouter une image à un post
     //
     'POST /api/post/:postId/images/:imageId': 'PostController.addToImages',
+    //
     // Afficher une image
+    //
     'GET /api/image/show/:imageId': 'ImageController.show',
     ////////////////////////////////////////////////////////////
     //
