@@ -7,11 +7,9 @@
 
 module.exports = {
     showHomePage: function (req, res) {
-
         if (!req.session.user) {
             return res.view('homepage');
         }
-
         return res.view('dashboard');
     },
 };
