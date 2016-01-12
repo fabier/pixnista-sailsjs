@@ -6,38 +6,20 @@
  */
 
 module.exports = {
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
     // Il est interdit de lister les votes de commentaires depuis l'API Rest
     find: function (req, res) {
         res.forbidden();
     },
     /**
-     * @api {get} /message/:id Get Message by Id
-     * @apiName GetMessageById
-     * @apiDescription Gets a Message by its Id
-     * @apiGroup Message
+     * @api {get} /postVote/:id Get PostVote by Id
+     * @apiName GetPostVoteById
+     * @apiDescription Gets a PostVote by its Id
+     * @apiGroup PostVote
      * @apiPermission none
      *
-     * @apiParam {Number} id MessageId
+     * @apiParam {Number} id PostVoteId
      *
-     * @apiSuccess {Number} array.id MessageId
+     * @apiSuccess {Number} array.id PostVoteId
      * @apiSuccess {String} array.message Message content
      * @apiSuccess {String} array.creator Creator of this Message
      * @apiSuccess {String} array.recipient Recipient of this Message
@@ -50,18 +32,16 @@ module.exports = {
      */
     // findOne: function
     /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
+     * @api {post} /postComment Create a PostCommentVote
+     * @apiName CreatePostComment
+     * @apiDescription Create a new PostCommentVote on an existing PostComment
+     * @apiGroup PostComment
+     * @apiPermission USER
      *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
+     * @apiParam {Number} postComment The PostCommentId on which the user is submitting a new PostCommentVote
+     * @apiParam {Boolean} vote
      *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
+     * @apiSuccess {Number} array.id PostCommentVoteId
      *
      * @apiSampleRequest off
      *
