@@ -12,6 +12,27 @@ module.exports = {
         res.forbidden();
     },
     /**
+     * @api {get} /message/:id Get Message by Id
+     * @apiName GetMessageById
+     * @apiDescription Gets a Message by its Id
+     * @apiGroup Message
+     * @apiPermission none
+     *
+     * @apiParam {Number} id MessageId
+     *
+     * @apiSuccess {Number} array.id MessageId
+     * @apiSuccess {String} array.message Message content
+     * @apiSuccess {String} array.creator Creator of this Message
+     * @apiSuccess {String} array.recipient Recipient of this Message
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // findOne: function
+    /**
      * @api {post} /postComment Create a PostComment
      * @apiName CreatePostComment
      * @apiDescription Creates a new Comment on a Post
