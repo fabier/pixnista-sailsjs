@@ -29,6 +29,28 @@ module.exports = {
         res.forbidden();
     },
     /**
+     * @api {get} /language/:id Get Language by Id
+     * @apiName GetLanguageById
+     * @apiDescription Gets a Language by its Id
+     * @apiGroup Language
+     * @apiPermission none
+     *
+     * @apiParam {Number} id LanguageId
+     *
+     * @apiSuccess {Number} array.id LanguageId
+     * @apiSuccess {String} array.name Name of Language
+     * @apiSuccess {String} array.description Description of Language
+     * @apiSuccess {String} array.nativeName Native name of Language
+     * @apiSuccess {String} array.isocode6391 ISO Code 6391 for Language
+     * @apiSuccess {Date} array.createdAt Creation date
+     * @apiSuccess {Date} array.updatedAt Last update date
+     *
+     * @apiSampleRequest off
+     *
+     * @apiVersion 0.0.0
+     */
+    // findOne: function
+    /**
      * @apiIgnore Not documented yet
      * @api {get} /XXXTODOXXX XXXTODOXXX
      * @apiName XXXTODOXXX
@@ -74,45 +96,11 @@ module.exports = {
             }
         });
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
+    // Interdit de mettre à jour un PostVote depuis l'API
     update: function (req, res) {
         res.forbidden();
     },
-    /**
-     * @apiIgnore Not documented yet
-     * @api {get} /XXXTODOXXX XXXTODOXXX
-     * @apiName XXXTODOXXX
-     * @apiDescription XXXTODOXXX
-     * @apiGroup XXXTODOXXX
-     * @apiPermission none
-     *
-     * @apiParam {Number} XXXTODOXXX
-     * @apiParam {Number} XXXTODOXXX
-     *
-     * @apiSuccess {String} XXXTODOXXX
-     * @apiSuccess {String} XXXTODOXXX
-     *
-     * @apiSampleRequest off
-     *
-     * @apiVersion 0.0.0
-     */
+    // Interdit de supprimer un PostVote depuis l'API
     destroy: function (req, res) {
         res.forbidden();
     }
