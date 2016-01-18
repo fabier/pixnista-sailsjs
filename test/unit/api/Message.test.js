@@ -51,21 +51,21 @@ describe('Message API', function () {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
-    it('should be able to update a Message', function (done) {
+    it('should not be able to update a Message', function (done) {
         request.put('/message/' + message.id).send({
             message: faker.lorem.sentence()
         }).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
         });
     });
-    it('should be able to delete a Message', function (done) {
+    it('should not able to delete a Message', function (done) {
         request.delete('/message/' + message.id).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
         });
     });
-    it('should not be able to get a deleted Message', function (done) {
+    it('should be able to get a Message someone tried to delete', function (done) {
         request.get('/message/' + message.id).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 404, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
 });

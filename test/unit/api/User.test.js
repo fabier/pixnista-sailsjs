@@ -57,32 +57,32 @@ describe('User API', function () {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
-    it('should correctly update an existing account', function (done) {
+    it('should not be able to update an existing account, if not loggued in, and not admin', function (done) {
         request.put('/user/' + user.id).send({
             password: user.newpassword // new password
         }).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
         });
     });
-    it('should be able to connect using new password provided', function (done) {
+    it('should not be able to connect using new password provided (since password didn\'t change)', function (done) {
         request.put('/login').send({
             email: user.email,
             password: user.newpassword
         }).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 404, done);
         });
     });
-    it('should not be able to connect using old password', function (done) {
+    it('should still be able to connect using old password', function (done) {
         request.put('/login').send({
             email: user.email,
             password: user.password // old password
         }).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 404, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
-    it('should be able to delete an account', function (done) {
+    it('should not be able to delete an account', function (done) {
         request.delete('/user/' + user.id).send().end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
         });
     });
     it('should not be able to login with correct credentials if account is deleted', function (done) {

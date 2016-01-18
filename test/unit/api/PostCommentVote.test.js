@@ -51,16 +51,16 @@ describe('PostCommentVote API', function () {
             pixnista.handleResponseCheckStatusCode(err, res, 200, done);
         });
     });
-    it('should be able to update a PostCommentVote', function (done) {
+    it('should not be able to update a PostCommentVote', function (done) {
         request.put('/postCommentVote/' + postCommentVote.id).send({
             vote: false
         }).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
         });
     });
-    it('should be able to delete a PostCommentVote', function (done) {
+    it('should not be able to delete a PostCommentVote', function (done) {
         request.delete('/postCommentVote/' + postCommentVote.id).end(function (err, res) {
-            pixnista.handleResponseCheckStatusCode(err, res, 200, done);
+            pixnista.handleResponseCheckStatusCode(err, res, 403, done);
         });
     });
 });
