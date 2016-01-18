@@ -12,12 +12,27 @@ before(function (done) {
             done(err);
         } else {
             // here you can load fixtures, etc.
-            done(err, sails);
+            loadFixtures(function () {
+                done(err, sails);
+            });
         }
     });
 });
 
 after(function (done) {
     // here you can clear fixtures, etc.
-    Sails.lower(done);
+    clearFixtures(function () {
+        Sails.lower(done);
+    });
 });
+
+function loadFixtures(done) {
+    // Create test User
+
+    done();
+}
+
+function clearFixtures(done) {
+    // Delete test user
+    done();
+}
