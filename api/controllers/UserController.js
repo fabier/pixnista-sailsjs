@@ -226,7 +226,7 @@ module.exports = require('waterlock').actions.user({
                     );
                 }});
         } else {
-            res.notFound();
+            res.forbidden();
         }
     },
     show: function (req, res) {
