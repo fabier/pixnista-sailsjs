@@ -26,6 +26,11 @@ module.exports = {
             required: true,
             unique: true
         },
+        // Admin
+        // true si l'utilisateur est admin, false dans le cas contraire
+        admin: {
+            type: 'boolean',
+        },
         // Password chiffré de l'utilisateur
         // ex: 2$a492.abc3fadifhoi3hesdqd
         encryptedPassword: {
