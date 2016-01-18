@@ -32,7 +32,8 @@ module.exports = {
                         password: randomId(18),
                         email: faker.internet.email(),
                         description: faker.lorem.sentences(),
-                        avatarUrl: faker.image.avatar()
+                        avatarUrl: faker.image.avatar(),
+                        admin: false
                     });
                 }
                 UserService.create(users, callback);
